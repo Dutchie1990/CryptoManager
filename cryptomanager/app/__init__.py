@@ -1,8 +1,10 @@
-# import Flask
+# Import Flask
 from flask import Flask
-# import mongoengine to comminucate with database
+# Import mongoengine to comminucate with database
 from flask_mongoengine import MongoEngine
-# other imports
+# Extension for implementing Flask-Login for authentication
+from flask_login import LoginManager
+# Other imports
 import os
 if os.path.exists("env.py"):
     import env
@@ -19,3 +21,8 @@ app.config.from_mapping(
 )
 
 db = MongoEngine(app)
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
+login_manager.session_protection = "strong"
+login_manager.login_message = ("You need to be logged in to access this page.")
+login_manager.login_message_category = "danger"

@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from mongoengine import StringField, EmailField
 # Imports for database usage and login manager from app
-from app import db
+from app import db, login_manager
 
 class User(UserMixin, db.Document):
     firstname = StringField(required=True)
@@ -23,3 +23,10 @@ class User(UserMixin, db.Document):
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
+@login_manager.user_loader
+def load_user(user_id):
+    try: 
+        return User.objects.get(id=user_id) 
+    except Exception as e: 
+        print(e)
+        raise
