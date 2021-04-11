@@ -31,7 +31,6 @@ class RegistrationForm(FlaskForm):
                                     InputRequired("Input is required!"),
                                     DataRequired("Data is required!")
                                 ])
-    submit           = SubmitField(("Register"))
 
     @staticmethod
     def validate_email(form, field):

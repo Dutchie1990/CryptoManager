@@ -34,11 +34,7 @@ h1 {
 }
 
 #flashes{
-    position: relative;
-    max-width: 80%;
-    left: 12.5%;
     top: 10vh;
-    opacity: 0;
 }
 
 #flashes p{

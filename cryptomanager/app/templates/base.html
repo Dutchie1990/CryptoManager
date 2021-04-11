@@ -54,19 +54,19 @@
                 </ul>
             </div>
         </nav>
+        <section id="flashes" class="row justify-content-center" >
+            <div class="col-10 text-center">
+                <p>This is a flash</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </div>
+        </section>
     </header>
-
-    <section id="flashes" class="row justify-content-center" >
-        <div class="col-10 text-center">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <p class="{{ category }}">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        </div>
-    </section>
 
     <main class="container">
         {% block content %}
