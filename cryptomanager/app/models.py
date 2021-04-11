@@ -25,4 +25,9 @@ class User(UserMixin, db.Document):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return False
+    try: 
+        return User.objects.get(id=user_id) 
+    except Exception as e: 
+        print(e)
+        raise
+

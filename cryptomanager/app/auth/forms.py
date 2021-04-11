@@ -19,7 +19,7 @@ class RegistrationForm(FlaskForm):
                                     Length(min=5, max=30, message="Email must be between 5 and 30 characters long"),
                                     Email("You did not enter a valid email!")
                                 ])
-    password         = PasswordField(("password *"),
+    password         = PasswordField(("Password *"),
                                 validators=[
                                     InputRequired("Input is required!"),
                                     DataRequired("Data is required!"),
@@ -33,7 +33,8 @@ class RegistrationForm(FlaskForm):
                                 ])
     submit           = SubmitField(("Register"))
 
-    def validate_email(self, form, field):
+    @staticmethod
+    def validate_email(form, field):
         user = User.objects(email=field.data)
         if user:
             raise ValidationError("Email already exists.")

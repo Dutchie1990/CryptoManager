@@ -1,0 +1,67 @@
+body {
+    color:#343a40;
+    background-color: #F4FAFF;
+}
+
+h1 {
+    color:#A30000;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+#navbar {
+    position: absolute; 
+    width: 100%; 
+    z-index: 9999;
+}
+
+.navbar-brand{
+    font-size: 1rem;
+}
+
+.navbar-brand i {
+    margin-right: 5px;
+}
+
+.navbar-toggler{
+    font-size: 0.8rem;
+}
+
+.container{
+    max-width: 100%;
+    overflow: hidden;
+    height: 95vh;
+}
+
+#flashes{
+    position: relative;
+    max-width: 80%;
+    left: 12.5%;
+    top: 10vh;
+    opacity: 0;
+}
+
+#flashes p{
+border-radius: 30px;
+padding-right: 10px;
+padding-left: 10px;
+
+}
+
+.error{
+background-color: red;
+}
+
+.success{
+background-color: green;
+}
+
+@media (min-width: 992px) {
+    #navbar {
+        position: relative; 
+    }
+
+    .container{
+    height: 90vh;
+    }
+}
