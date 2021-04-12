@@ -1,18 +1,95 @@
 {% extends 'base.html' %}
-{% block heading %}{{ ('Crypto Portfolio Manager') }}{% endblock %}
-{% set active_page = 'home' %}
+{% block heading %}{{ ('Assets') }}{% endblock %}
+{% set active_page = 'assets' %}
 
 {% block styles %}
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css')}}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css')}}" type="text/css">
 {% endblock %}
 
 {% block content %}
 
+<div class="lead text-center">
+    <p>Total deposit: <strong>5000</strong> USD </p>
+    <p>Current value: <strong>75000</strong> USD </p>
+    <button class="btn btn-success m-2" data-toggle="modal" data-target="#exampleModal">Deposit</button>
+    <button class="btn btn-danger m-2">Withdrawal</button>
+    <div class="my-2 my-md-4"></div>
+</div>
+<div class="justify-content-center">
+<div class="table-responsive col-md-10">
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="Asset" data-sortable="true" scope="col">Asset</th>
+                <th data-field="Amount" data-sortable="true" scope="col">Amount</th>
+                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Price</th>
+                <th data-field="P/L" data-sortable="true" scope="col">P/L</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row"><img src=""> ACT</td>
+                <td>5,000</td>
+                <td class="d-none d-sm-block">0.02208617</td>
+                <td>45%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> BTC</td>
+                <td>4</td>
+                <td class="d-none d-sm-block">59565</td>
+                <td>26.7%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> ETH</td>
+                <td>6</td>
+                <td class="d-none d-sm-block">1999.16</td>
+                <td>15%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> XMY</td>
+                <td>5698</td>
+                <td class="d-none d-sm-block">0.00417045</td>
+                <td>-43.3%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> VIBE</td>
+                <td>12561</td>
+                <td class="d-none d-sm-block">0.064627</td>
+                <td>6.2%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> TAU</td>
+                <td>468</td>
+                <td class="d-none d-sm-block">0.150145</td>
+                <td>-9.4%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> SNM</td>
+                <td>123</td>
+                <td class="d-none d-sm-block">0.067927</td>
+                <td>12.9%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> POE</td>
+                <td>10564</td>
+                <td class="d-none d-sm-block">0.00079698</td>
+                <td>-63%</td>
+            </tr>
+            <tr>
+                <td scope="row"><img src=""> SAI</td>
+                <td>1268</td>
+                <td class="d-none d-sm-block">0.04781073</td>
+                <td>0.06%</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/assets.js')}}"></script>
-
-<script>setElementListener()</script>
 {% endblock %}

@@ -33,6 +33,9 @@ app.register_blueprint(auth)
 from .general.views import general
 app.register_blueprint(general)
 
+from .assets.views import assets
+app.register_blueprint(assets)
+
 @app.template_filter("capitalized")
 def capitalize(value):
     return value.capitalize()
