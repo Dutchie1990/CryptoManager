@@ -13,10 +13,10 @@
 <div class="text-center row">
     <div class="form col-md-8 offset-md-2">
     <h5 class="my-3">The one and only way to succesfull manage your Crypto Portfolio</h5>
-    <a class="btn btn-outline-secondary btn-lg my-3" href="{{ url_for('register')}}" role="button">Register now!</a>
+    <a class="btn btn-outline-secondary btn-lg my-3" href="{{ url_for('auth.register')}}" role="button">Register now!</a>
     <hr class="my-3>">
     <p>Already signed up?</p>
-    <a class="btn btn-outline-dark" href="{{ url_for('login')}}" role="button">Login</a>
+    <a class="btn btn-outline-dark" href="{{ url_for('auth.login')}}" role="button">Login</a>
 </div>
 </div>
 {% endblock %}
