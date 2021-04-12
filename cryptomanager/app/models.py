@@ -2,7 +2,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 # Extension for implementing Flask-Login for authentication
 from flask_login import UserMixin
-from mongoengine import StringField, EmailField
+from mongoengine import StringField, EmailField, FloatField, ReferenceField
 # Imports for database usage and login manager from app
 from ..app import db, login_manager
 
@@ -31,3 +31,17 @@ def load_user(user_id):
         print(e)
         raise
 
+class Assets(db.Document):
+    userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
+    asset_name = db.StringField(required=True)
+    amount = db.FloatField(required=True)
+    prize = db.FloatField()
+    p_l = db.FloatField()
+
+    def __init__(self, userid, asset_name, amount, prize=0.0, p_l=0.0, *args, **kwargs):
+        super(Assets, self).__init__(*args, **kwargs)
+        self.userid = userid
+        self.asset_name = asset_name
+        self.amount = amount
+        self.prize = prize
+        self.p_l = p_l

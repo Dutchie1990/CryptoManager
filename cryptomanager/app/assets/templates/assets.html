@@ -28,11 +28,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td scope="row"><img src=""> ACT</td>
-                <td>5,000</td>
-                <td class="d-none d-sm-block">0.02208617</td>
-                <td>45%</td>
+            
+                {% if assets %}
+                {% for asset in assets %}
+                <tr>
+                    <td scope="row"><img src=""> {{ asset.asset_name }}</td>
+                    <td>{{ asset.amount }}</td>
+                    <td class="d-none d-sm-block">0.02208617</td>
+                    <td>45%</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
             </tr>
             <tr>
                 <td scope="row"><img src=""> BTC</td>
