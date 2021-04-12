@@ -25,6 +25,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 login_manager.session_protection = "strong"
 login_manager.login_message = ("You need to be logged in to access this page.")
-login_manager.login_message_category = "danger"
+login_manager.login_message_category = "error"
 
 from .auth import views
+from .general import views

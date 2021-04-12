@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Crypto Portfolio Manager') }}{% endblock %}
+{% set active_page = 'home' %}
+
+{% block styles %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/login-register.css')}}" type="text/css">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="background"></div>
+<div class="text-center row">
+    <div class="form col-md-8 offset-md-2">
+    <h5 class="my-3">The one and only way to succesfull manage your Crypto Portfolio</h5>
+    <a class="btn btn-outline-secondary btn-lg my-3" href="{{ url_for('register')}}" role="button">Register now!</a>
+    <hr class="my-3>">
+    <p>Already signed up?</p>
+    <a class="btn btn-outline-dark" href="{{ url_for('login')}}" role="button">Login</a>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script>setElementListener()</script>
+{% endblock %}

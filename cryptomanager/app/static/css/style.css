@@ -1,18 +1,17 @@
 body {
     color:#343a40;
-    background-color: #F4FAFF;
+    background-color: #F4FAFF; 
+}
+
+.overflow-hidden{
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
 }
 
 h1 {
+    font-size: 2rem;
     color:#A30000;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-#navbar {
-    position: absolute; 
-    width: 100%; 
-    z-index: 9999;
 }
 
 .navbar-brand{
@@ -27,21 +26,9 @@ h1 {
     font-size: 0.8rem;
 }
 
-.container{
-    max-width: 100%;
-    overflow: hidden;
-    height: 95vh;
-}
-
 #flashes{
-    top: 10vh;
-}
-
-#flashes p{
-border-radius: 30px;
-padding-right: 10px;
-padding-left: 10px;
-
+    margin-top: 1rem;
+    min-height: 2.5rem;
 }
 
 .error{
@@ -53,11 +40,8 @@ background-color: green;
 }
 
 @media (min-width: 992px) {
-    #navbar {
-        position: relative; 
-    }
-
-    .container{
-    height: 90vh;
+    h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
     }
 }
