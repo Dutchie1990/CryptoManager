@@ -22,10 +22,17 @@ app.config.from_mapping(
 
 db = MongoEngine(app)
 login_manager = LoginManager(app)
-login_manager.login_view = "login"
+login_manager.login_view = "auth.login"
 login_manager.session_protection = "strong"
 login_manager.login_message = ("You need to be logged in to access this page.")
 login_manager.login_message_category = "error"
 
-from .auth import views
-from .general import views
+from .auth.views import auth
+app.register_blueprint(auth)
+
+from .general.views import general
+app.register_blueprint(general)
+
+@app.template_filter("capitalized")
+def capitalize(value):
+    return value.capitalize()
