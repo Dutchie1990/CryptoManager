@@ -10,7 +10,7 @@
 {% block content %}
 
 <div class="lead text-center">
-    <p>Total deposit: <strong>5000</strong> USD </p>
+    <p>Withdrawable balance: <strong>5000</strong> USD </p>
     <p>Current value: <strong>75000</strong> USD </p>
     <button class="btn btn-success m-2" data-toggle="modal" data-target="#exampleModal">Deposit</button>
     <button class="btn btn-danger m-2">Withdrawal</button>
@@ -86,6 +86,39 @@
     </table>
     </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-12 col-md-8" action="" method="POST">
+                        <div class="row justify-content-end">
+                            <div class="input-group has-validation mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                    <input type="text" class="form-control" aria-label="Amount" id="amount" name="amount"
+                                        aria-describedby="validationAmountFeedback" placeholder="Enter your amount">
+                                    <div id="validationAmountFeedback" class="invalid-feedback">
+                                        Please enter a number
+                                    </div>
+                            </div>
+                           <button id="clear-button" class="btn btn-outline-dark m-2" disabled>Clear</button>
+                            <button id="submit-button" type="submit" class="btn btn-dark m-2" disabled>Confirm</button>   
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 
