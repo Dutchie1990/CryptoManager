@@ -35,13 +35,22 @@ class Assets(db.Document):
     userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
     asset_name = db.StringField(required=True)
     amount = db.FloatField(required=True)
-    prize = db.FloatField()
-    p_l = db.FloatField()
+    costs = db.FloatField(required=True)
 
-    def __init__(self, userid, asset_name, amount, prize=0.0, p_l=0.0, *args, **kwargs):
+    def __init__(self, userid, asset_name, amount, costs, *args, **kwargs):
         super(Assets, self).__init__(*args, **kwargs)
         self.userid = userid
         self.asset_name = asset_name
         self.amount = amount
-        self.prize = prize
-        self.p_l = p_l
+        self.costs = costs
+    
+    @staticmethod
+    def calculate_profits(assets):
+        for asset in assets:
+           asset.p_l = ((asset.prize - asset.costs) / asset.costs * 100)
+        return assets
+    
+    @staticmethod
+    def calculate_current_value(assets):
+        current_value = sum([x.amount * x.prize for x in assets])
+        return current_value

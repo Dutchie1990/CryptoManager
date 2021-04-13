@@ -43,3 +43,7 @@ app.register_blueprint(assets)
 @app.template_filter("capitalized")
 def capitalize(value):
     return value.capitalize()
+
+@app.template_filter("trim")
+def trim(value):
+    return '%.2f'%(value)
