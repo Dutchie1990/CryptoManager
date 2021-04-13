@@ -27,6 +27,9 @@ login_manager.session_protection = "strong"
 login_manager.login_message = ("You need to be logged in to access this page.")
 login_manager.login_message_category = "error"
 
+from .api import API
+cached_symbols = API.retrieve_data("/coins/list")
+
 from .auth.views import auth
 app.register_blueprint(auth)
 
