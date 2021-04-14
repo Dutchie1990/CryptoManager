@@ -11,7 +11,7 @@
 {% block content %}
 
 <div class="lead text-center">
-    <p>Withdrawable balance: <strong>{{ withdrawable_balance.amount | trim }}</strong> USD </p>
+    <p>Withdrawable balance: <strong>{{ withdrawable_balance | trim }}</strong> USD </p>
     <p>Current value: <strong>{{ current_value | trim}}</strong> USD </p>
     <button class="btn btn-success m-2" data-toggle="modal" data-target="#exampleModal">Deposit</button>
     <button class="btn btn-danger m-2">Withdrawal</button>
