@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         "info": false,
     });
     var table_el = document.getElementById("table_wrapper");
-    var input_el = document.getElementById('deposit_amount')
+    var input_el = document.getElementById('amount')
     var clear_button = document.getElementById('clear-button')
     setElementListener()
     table_el.addEventListener('click', addIcon);
@@ -67,10 +67,22 @@ function validate() {
         event.target.classList.remove('is-invalid')
         submit_button.setAttribute("disabled", true)
     }
+}
 
+function setTransactionType(type){
+    console.log(this)
+    document.getElementById('transaction_type').value = type
+    document.getElementById('depositModalLabel').innerHTML = capitalize(type)
 }
 
 function hasValue(element, val = 0) {
     return (element.value.length > val) ? true : false
 }
 
+const capitalize = (str) => {
+    if(typeof str === 'string') {
+        return str.replace(/^\w/, c => c.toUpperCase());
+    } else {
+        return '';
+    }
+};
