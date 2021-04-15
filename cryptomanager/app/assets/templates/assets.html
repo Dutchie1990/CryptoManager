@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block heading %}{{ ('Assets') }}{% endblock %}
-{% from '_error_messages.html' import error_messages %}
 {% set active_page = 'assets' %}
 
 {% block styles %}
@@ -60,14 +59,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form col-12 col-md-8" action="" method="POST">
+                    <form class="form col-12 col-md-8" action="{{ url_for('assets.get_asset') }}" method="POST">
                         <div class="row justify-content-end">
                             <div class="input-group has-validation mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                 </div>
                                 {{ form.csrf_token }}
-                                {{ error_messages(form.errors) }}
                                 {{ form.transaction_type(id="transaction_type") }}
                                 {{ form.amount(class="form-control", placeholder="Enter your amount", id="amount") }}
                                     <div id="validationAmountFeedback" class="invalid-feedback">

@@ -37,7 +37,7 @@ class Assets(db.Document):
     amount = db.FloatField(required=True)
     costs = db.FloatField(required=True)
 
-    def __init__(self, userid, asset_name, amount, costs, *args, **kwargs):
+    def __init__(self, userid, asset_name, amount, costs="", *args, **kwargs):
         super(Assets, self).__init__(*args, **kwargs)
         self.userid = userid
         self.asset_name = asset_name

@@ -6,3 +6,5 @@ __pycache__/
 *.py[cod]
 node_modules/
 .vscode/
+cryptomanager/app/assets/templates/assets.html
+*.private
