@@ -4,12 +4,12 @@
 
 {% block styles %}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets-transactions.css')}}" type="text/css">
 {% endblock %}
 
 {% block content %}
 
-<div class="lead text-center">
+<div class="jumbotron text-center">
     <p>Withdrawable balance: <strong>{{ withdrawable_balance | trim }}</strong> USD </p>
     <p>Current value: <strong>{{ current_value | trim}}</strong> USD </p>
     <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Deposit')">Deposit</button>

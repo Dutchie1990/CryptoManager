@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Transactions') }}{% endblock %}
+{% set active_page = 'transactions' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets-transactions.css')}}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h5>Manage your transactions</h5>
+    <button class="btn btn-lg btn-success mt-5">Add transaction</button>
+</div>
+
+<div class="justify-content-center">
+<div class="table-responsive col-md-12">
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="Date" data-sortable="true" scope="col">Date</th>
+                <th data-field="Ordertype" data-sortable="true" scope="col">Ordertype</th>
+                <th data-field="Pair" scope="col">Pair</th>
+                <th class="d-none d-sm-block" data-field="Price" scope="col">Price</th>
+                <th data-field="Volume" scope="col">Volume</th>
+                <th class="d-none d-sm-block"  data-field="Cost" scope="col">Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">2021-04-12</td>
+                <td style="color: green;">Deposit</td>
+                <td>-</td>
+                <td class="d-none d-sm-block">-</td>
+                <td>15000</td>
+                <td class="d-none d-sm-block">-</td>
+            </tr>
+            <tr>
+                <td scope="row">2021-04-15</td>
+                <td>Order</td>
+                <td>BTC/USD</td>
+                <td class="d-none d-sm-block">61671.8</td>
+                <td>0.1</td>
+                <td class="d-none d-sm-block">6167.18</td>
+            </tr>
+            <tr>
+                <td scope="row">2021-04-14</td>
+                <td>Order</td>
+                <td>ETH/BTC</td>
+                <td class="d-none d-sm-block">0.039</td>
+                <td>2</td>
+                <td class="d-none d-sm-block">0.078</td>
+            </tr>
+            <tr>
+                <td scope="row">2021-04-15</td>
+                <td style="color: red;">Withdrawal</td>
+                <td class="d-none d-sm-block">-</td>
+                <td>-</td>
+                <td>4000</td>
+                <td class="d-none d-sm-block">-</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/transactions.js')}}"></script>
+{% endblock %}
