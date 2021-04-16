@@ -1,0 +1,15 @@
+.overflow{
+    overflow: visible !important;
+}
+
+#table_wrapper{
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 576px) {
+    .d-sm-block {
+        display: table-cell !important;
+        }
+    
+}
+    

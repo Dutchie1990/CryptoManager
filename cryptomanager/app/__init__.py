@@ -5,6 +5,7 @@ from flask_mongoengine import MongoEngine
 # Extension for implementing Flask-Login for authentication
 from flask_login import LoginManager
 # Other imports
+from .api import API
 import os
 if os.path.exists("cryptomanager/app/env.py"):
     import cryptomanager.app.env
@@ -27,12 +28,22 @@ login_manager.session_protection = "strong"
 login_manager.login_message = ("You need to be logged in to access this page.")
 login_manager.login_message_category = "error"
 
+api = API()
+api.retrieve_symbols("/coins/list")
+
 from .auth.views import auth
 app.register_blueprint(auth)
 
 from .general.views import general
 app.register_blueprint(general)
 
+from .assets.views import assets
+app.register_blueprint(assets)
+
 @app.template_filter("capitalized")
 def capitalize(value):
     return value.capitalize()
+
+@app.template_filter("trim")
+def trim(value):
+    return '%.2f'%(value)

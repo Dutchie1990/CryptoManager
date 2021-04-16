@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Assets') }}{% endblock %}
+{% set active_page = 'assets' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css')}}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="lead text-center">
+    <p>Withdrawable balance: <strong>{{ withdrawable_balance | trim }}</strong> USD </p>
+    <p>Current value: <strong>{{ current_value | trim}}</strong> USD </p>
+    <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Deposit')">Deposit</button>
+    <button id="withdrawal" class="btn btn-danger m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Withdrawal')">Withdrawal</button>
+    <div class="my-2 my-md-4"></div>
+</div>
+<div class="justify-content-center">
+<div class="table-responsive col-md-12">
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="Asset" data-sortable="true" scope="col">Asset</th>
+                <th data-field="Amount" data-sortable="true" scope="col">Amount</th>
+                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Costs (USD)</th>
+                <th data-field="P/L" data-sortable="true" scope="col">P/L</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% if assets %}
+                {% for asset in assets %}
+                <tr>
+                    <td scope="row"><img src=""> {{ asset.asset_name }}</td>
+                    <td>{{ asset.amount }}</td>
+                    <td class="d-none d-sm-block">{{ asset.costs }}</td>
+                    {% if asset.p_l < 0 %}
+                        <td style="color: red;">{{ asset.p_l | trim}}%</td>
+                    {% else %}  
+                        <td style="color: green;">{{ asset.p_l | trim}}%</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="depositModalLabel">Deposit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-12 col-md-8" action="{{ url_for('assets.get_asset') }}" method="POST">
+                        <div class="row justify-content-end">
+                            <div class="input-group has-validation mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                {{ form.csrf_token }}
+                                {{ form.transaction_type(id="transaction_type") }}
+                                {{ form.amount(class="form-control", placeholder="Enter your amount", id="amount") }}
+                                    <div id="validationAmountFeedback" class="invalid-feedback">
+                                        Please enter a number
+                                    </div>
+                            </div>
+                           <button id="clear-button" class="btn btn-outline-dark m-2" disabled>Clear</button>
+                            <button id="submit-button" type="submit" class="btn btn-dark m-2" disabled>Confirm</button>   
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/assets.js')}}"></script>
+{% endblock %}
