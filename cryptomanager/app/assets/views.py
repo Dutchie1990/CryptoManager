@@ -7,12 +7,12 @@ import copy
 
 assets = Blueprint('assets', __name__, template_folder="templates")
 
-
 @assets.route('/assets', methods=["GET", "POST"])
 @login_required
 def get_asset():
     if not current_user:
         redirect(url_for('auth.login'))
+        flash("You need to be logged in for this functionality", "error")
     g.user = current_user
     form = DepositForm()
     list_assets = []

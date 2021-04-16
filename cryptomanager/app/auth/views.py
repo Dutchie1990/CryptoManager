@@ -46,7 +46,7 @@ def login():
             return redirect(url_for('auth.login'))
         login_user(user)
         flash(("You are logged in"), "success")
-        return redirect(url_for('general.home'))
+        return redirect(url_for('assets.get_asset'))
 
     return render_template("login.html", form=form)
 

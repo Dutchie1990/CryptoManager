@@ -47,7 +47,7 @@ class Assets(db.Document):
     @staticmethod
     def calculate_profits(assets):
         for asset in assets:
-           asset.p_l = ((asset.prize - asset.costs) / asset.costs * 100)
+           asset.p_l = (((asset.prize - asset.costs) / asset.costs)  * 100)
         return assets
     
     @staticmethod

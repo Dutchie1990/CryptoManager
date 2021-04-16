@@ -23,12 +23,15 @@ class DepositForm(FlaskForm):
                 flash("Insufficient funds to withdraw", "error")
                 raise ValidationError()
             g.value = field.data
+            flash("{} is added to your deposit".format(field.data), "success")
             return
         if (form.transaction_type.data == 'Withdrawal'):
             if field.data > available_asset.amount:
                 flash("Insufficient funds to withdraw", "error")
                 raise ValidationError()
             g.value = available_asset.amount - field.data
+            flash("{} is withdrawn from your deposit".format(field.data), "success")
             return
         g.value = available_asset.amount + field.data
+        flash("{} is added to your deposit".format(field.data), "success")
         return
