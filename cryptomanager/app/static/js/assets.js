@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     var table_el = document.getElementById("table_wrapper");
     var input_el = document.getElementById('amount')
     var clear_button = document.getElementById('clear-button')
+    var submit_button = document.getElementById('submit-button')
     setElementListener()
     table_el.addEventListener('click', addIcon);
     input_el.addEventListener('change', function (event) {
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         input_el.classList.remove('is-valid')
         input_el.classList.remove('is-invalid')
         clear_button.setAttribute("disabled", true)
+        submit_button.setAttribute("disabled", true)
         clear_button.blur()
     })
     addIcon();
@@ -44,15 +46,15 @@ function addIcon() {
 
 function validate() {
     let is_valid;
-    let submit_button = document.getElementById('submit-button')
-    if (hasValue(event.target)) {
-        if (isNaN(event.srcElement.value)) {
-            event.target.classList.add('is-invalid')
-            event.target.classList.remove('is-valid')
+    var submit_button = document.getElementById('submit-button')
+    if (hasValue(this.event.target)) {
+        if (isNaN(this.event.srcElement.value)) {
+            this.event.target.classList.add('is-invalid')
+            this.event.target.classList.remove('is-valid')
             is_valid = false;
         } else {
-            event.target.classList.remove('is-invalid')
-            event.target.classList.add('is-valid')
+            this.event.target.classList.remove('is-invalid')
+            this.event.target.classList.add('is-valid')
             is_valid = true
         }
         if (is_valid) {
@@ -63,14 +65,14 @@ function validate() {
             submit_button.setAttribute("disabled", true)
         }
     } else{
-        event.target.classList.remove('is-valid')
-        event.target.classList.remove('is-invalid')
+        this.event.target.classList.remove('is-valid')
+        this.event.target.classList.remove('is-invalid')
         submit_button.setAttribute("disabled", true)
     }
 }
 
 function setTransactionType(type){
-    console.log(this)
+    document.getElementById('amount').value = ""
     document.getElementById('transaction_type').value = type
     document.getElementById('depositModalLabel').innerHTML = capitalize(type)
 }
