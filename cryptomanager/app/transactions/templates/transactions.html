@@ -24,7 +24,7 @@
                 <th data-field="Pair" scope="col">Pair</th>
                 <th class="d-none d-sm-block" data-field="Price" scope="col">Price</th>
                 <th data-field="Volume" scope="col">Volume</th>
-                <th class="d-none d-sm-block"  data-field="Cost" scope="col">Cost</th>
+                <th data-field="Cost" scope="col">Costs</th>
             </tr>
         </thead>
         <tbody>
@@ -37,16 +37,16 @@
                             <td>-</td>
                             <td class="d-none d-sm-block">-</td>
                             <td>{{transaction.volume}}</td>
-                            <td class="d-none d-sm-block">-</td>
+                            <td>-</td>
                         </tr>
                     {% else %}
                         <tr>
                             <td scope="row">{{ transaction.date }}</td>
-                            <td>{{ transaction.ordertype }}</td>
+                            <td>{{ transaction.ordertype | capitalize}}</td>
                             <td>{{ transaction.symbolIn }}/{{ transaction.symbolOut }}</td>
-                            <td class="d-none d-sm-block">{{ transaction.prize }}</td>
+                            <td class="d-none d-sm-block">{{ transaction.prize }} {{ transaction.symbolOut }}</td>
                             <td>{{transaction.volume}}</td>
-                            <td class="d-none d-sm-block">{{ transaction.costs }}</td>
+                            <td>{{ transaction.costs }} {{ transaction.symbolOut }} </td>
                         </tr>
                     {% endif %}
                 {% endfor %}

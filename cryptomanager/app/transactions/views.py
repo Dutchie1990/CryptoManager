@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from ..models import Transactions
 from ...app import api
@@ -17,3 +17,10 @@ def get_transactions():
         transactions = None
 
     return render_template('transactions.html', transactions=transactions)
+
+@transactions.route('/transactions/dummy', methods=["GET"])
+@login_required
+def dummy():
+    transaction = Transactions(userid=current_user.id, ordertype="order", volume=0.25, symbolIn="BTC", symbolOut="USD", prize=55619.16, costs=1390.47)
+    transaction.save()
+    return redirect(url_for('transactions.get_transactions'))

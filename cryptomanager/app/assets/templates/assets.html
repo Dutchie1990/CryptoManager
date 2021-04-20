@@ -12,8 +12,8 @@
 <div class="jumbotron text-center">
     <p>Withdrawable balance: <strong>{{ withdrawable_balance | trim }}</strong> USD </p>
     <p>Current value: <strong>{{ current_value | trim}}</strong> USD </p>
-    <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Deposit')">Deposit</button>
-    <button id="withdrawal" class="btn btn-danger m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Withdrawal')">Withdrawal</button>
+    <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('deposit')">Deposit</button>
+    <button id="withdrawal" class="btn btn-danger m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('withdrawal')">Withdrawal</button>
     <div class="my-2 my-md-4"></div>
 </div>
 <div class="justify-content-center">
