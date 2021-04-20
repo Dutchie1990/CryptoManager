@@ -2,9 +2,10 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 # Extension for implementing Flask-Login for authentication
 from flask_login import UserMixin
-from mongoengine import StringField, EmailField, FloatField, ReferenceField
+from mongoengine import StringField, EmailField, FloatField, ReferenceField, DateField
 # Imports for database usage and login manager from app
 from ..app import db, login_manager
+import datetime
 
 class User(UserMixin, db.Document):
     firstname = db.StringField(required=True)
@@ -54,3 +55,26 @@ class Assets(db.Document):
     def calculate_current_value(assets):
         current_value = sum([x.amount * x.prize for x in assets])
         return current_value
+
+class Transactions(db.Document):
+    userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
+    date = db.DateField(required=True)
+    ordertype = db.StringField(required=True)
+    symbolIn = db.StringField()
+    symbolOut = db.StringField()
+    prize = db.FloatField()
+    volume = db.FloatField(required=True)
+    costs = db.FloatField()
+
+    def __init__(self, userid, date, ordertype, symbolIn, symbolOut, prize, volume, costs, *args, **kwargs):
+        super(Transactions, self).__init__(*args, **kwargs)
+        self.userid = userid
+        self.date = datetime.date.today()
+        self.ordertype = ordertype
+        self.symbolIn = symbolIn
+        self.symbolOut = symbolOut
+        self.prize = prize
+        self.volume = volume
+        self.costs = costs
+
+
