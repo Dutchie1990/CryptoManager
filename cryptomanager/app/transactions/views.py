@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from ..models import Transactions
+from .forms import TransactionForm
 from ...app import api
 
 transactions = Blueprint('transactions', __name__, template_folder="templates")
@@ -16,7 +17,9 @@ def get_transactions():
     except Transactions.DoesNotExist:
         transactions = None
 
-    return render_template('transactions.html', transactions=transactions)
+    form = TransactionForm()
+
+    return render_template('transactions.html', form=form, transactions=transactions)
 
 @transactions.route('/transactions/dummy', methods=["GET"])
 @login_required

@@ -18,11 +18,12 @@ class API():
         # Throw an exception on HTTP errors (404, 500, etc).
         response.raise_for_status()
 
-        for item in response.json():
-            supported_images = [''.join(val.split())[
+        supported_images = [''.join(val.split())[
                 :-4] for val in os.listdir("cryptomanager/app/static/img/symbols")]
+                
+        for item in response.json():   
             if item['symbol'] in supported_images:
-                cls.supported_coins.append(item)
+                cls.supported_coins.append({'symbol':item['symbol'], 'id':item['id'], 'name':item['name']})
 
     def retrieve_current_prize(self, rel_url, list_assets):
         url = self.BASE_URL + rel_url
