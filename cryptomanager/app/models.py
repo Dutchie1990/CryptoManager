@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from mongoengine import StringField, EmailField, FloatField, ReferenceField, DateField
 # Imports for database usage and login manager from app
 from ..app import db, login_manager
+# Import datetime to calculate today's date
 import datetime
 
 class User(UserMixin, db.Document):
@@ -60,13 +61,13 @@ class Transactions(db.Document):
     userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
     date = db.DateField(required=True)
     ordertype = db.StringField(required=True)
+    volume = db.FloatField(required=True)
     symbolIn = db.StringField()
     symbolOut = db.StringField()
     prize = db.FloatField()
-    volume = db.FloatField(required=True)
     costs = db.FloatField()
 
-    def __init__(self, userid, date, ordertype, symbolIn, symbolOut, prize, volume, costs, *args, **kwargs):
+    def __init__(self, userid, ordertype, volume, symbolIn="", symbolOut="", prize=0.0,  costs=0.0, *args, **kwargs):
         super(Transactions, self).__init__(*args, **kwargs)
         self.userid = userid
         self.date = datetime.date.today()

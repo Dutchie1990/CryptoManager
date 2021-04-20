@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, g
 from flask_login import login_required, current_user
 from .forms import DepositForm
-from ..models import Assets, User
+from ..models import Assets, User, Transactions
 from ...app import api
 import copy
 
@@ -39,6 +39,7 @@ def get_asset():
     
     if form.validate_on_submit():
         transaction_type = form.transaction_type.data
+        amount = form.amount.data
         if transaction_type == 'Deposit':
             withdrawable_balance = g.value
         else:
@@ -47,6 +48,8 @@ def get_asset():
             Assets.objects(userid=g.user.id, asset_name='USD').delete()
         else:
             Assets.objects(userid=g.user.id, asset_name='USD').update_one(set__amount=withdrawable_balance, upsert=True)
+        transaction = Transactions(userid=g.user.id, ordertype=transaction_type, volume=amount)
+        transaction.save()
 
     return render_template('assets.html', form=form, assets=completed_assets_list, withdrawable_balance=withdrawable_balance, current_value=current_value)
 
