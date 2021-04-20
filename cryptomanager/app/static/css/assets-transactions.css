@@ -12,6 +12,14 @@
     margin-bottom: 2rem;
 }
 
+.deposit{
+    color:green;
+}
+
+.withdrawal{
+    color:red;
+}
+
 @media (min-width: 576px) {
     .d-sm-block {
         display: table-cell !important;

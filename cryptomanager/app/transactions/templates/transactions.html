@@ -28,38 +28,29 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td scope="row">2021-04-12</td>
-                <td style="color: green;">Deposit</td>
-                <td>-</td>
-                <td class="d-none d-sm-block">-</td>
-                <td>15000</td>
-                <td class="d-none d-sm-block">-</td>
-            </tr>
-            <tr>
-                <td scope="row">2021-04-15</td>
-                <td>Order</td>
-                <td>BTC/USD</td>
-                <td class="d-none d-sm-block">61671.8</td>
-                <td>0.1</td>
-                <td class="d-none d-sm-block">6167.18</td>
-            </tr>
-            <tr>
-                <td scope="row">2021-04-14</td>
-                <td>Order</td>
-                <td>ETH/BTC</td>
-                <td class="d-none d-sm-block">0.039</td>
-                <td>2</td>
-                <td class="d-none d-sm-block">0.078</td>
-            </tr>
-            <tr>
-                <td scope="row">2021-04-15</td>
-                <td style="color: red;">Withdrawal</td>
-                <td class="d-none d-sm-block">-</td>
-                <td>-</td>
-                <td>4000</td>
-                <td class="d-none d-sm-block">-</td>
-            </tr>
+            {% if transactions %}
+                {% for transaction in transactions %}
+                    {% if transaction.ordertype == 'deposit' or transaction.ordertype == 'withdrawal'%}
+                        <tr>
+                            <td scope="row">{{ transaction.date }}</td>
+                            <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
+                            <td>-</td>
+                            <td class="d-none d-sm-block">-</td>
+                            <td>{{transaction.volume}}</td>
+                            <td class="d-none d-sm-block">-</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td scope="row">{{ transaction.date }}</td>
+                            <td>{{ transaction.ordertype }}</td>
+                            <td>{{ transaction.symbolIn }}/{{ transaction.symbolOut }}</td>
+                            <td class="d-none d-sm-block">{{ transaction.prize }}</td>
+                            <td>{{transaction.volume}}</td>
+                            <td class="d-none d-sm-block">{{ transaction.costs }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
     </div>

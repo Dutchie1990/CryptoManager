@@ -19,13 +19,13 @@ class DepositForm(FlaskForm):
         try:
             available_asset = Assets.objects.get(userid=g.user.id, asset_name='USD')
         except Assets.DoesNotExist:
-            if (form.transaction_type.data == 'Withdrawal'):
+            if (form.transaction_type.data == 'withdrawal'):
                 flash("Insufficient funds to withdraw", "error")
                 raise ValidationError()
             g.value = field.data
             flash("{} is added to your deposit".format(field.data), "success")
             return
-        if (form.transaction_type.data == 'Withdrawal'):
+        if (form.transaction_type.data == 'withdrawal'):
             if field.data > available_asset.amount:
                 flash("Insufficient funds to withdraw", "error")
                 raise ValidationError()

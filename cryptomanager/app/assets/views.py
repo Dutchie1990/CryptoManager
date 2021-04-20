@@ -38,9 +38,9 @@ def get_asset():
         current_value = Assets.calculate_current_value(completed_assets_list) + withdrawable_balance
     
     if form.validate_on_submit():
-        transaction_type = form.transaction_type.data
+        transaction_type = form.transaction_type.data.lower()
         amount = form.amount.data
-        if transaction_type == 'Deposit':
+        if transaction_type == 'deposit':
             withdrawable_balance = g.value
         else:
             withdrawable_balance = g.value
