@@ -30,6 +30,7 @@ login_manager.login_message_category = "error"
 
 api = API()
 api.retrieve_symbols("/coins/list")
+api.retrieve_vs_currencies("/simple/supported_vs_currencies")
 
 from .auth.views import auth
 app.register_blueprint(auth)
