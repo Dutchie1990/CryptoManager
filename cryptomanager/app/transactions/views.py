@@ -23,10 +23,22 @@ def get_transactions():
     except Transactions.DoesNotExist:
         transactions = None
 
+    return render_template('transactions.html', transactions=transactions)
+
+@transactions.route('/add_transaction', methods=["GET", "POST"])
+@login_required
+def add_transaction():
+    if not current_user:
+        redirect(url_for('auth.login'))
+        flash("You need to be logged in for this functionality", "error")
+
     form = TransactionForm()
     form.symbolOut.choices = get_currencies()
 
-    return render_template('transactions.html', form=form, transactions=transactions)
+    return render_template('add_transaction.html', form=form)
+
+
+
 
 @transactions.route('/transactions/dummy', methods=["GET"])
 @login_required
