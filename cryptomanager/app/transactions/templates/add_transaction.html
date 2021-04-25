@@ -19,14 +19,19 @@
         {{ form.csrf_token }}
         {{ error_messages(form.errors) }}
         <div class="row">
-            <div class="col-12 col-md-6">
-                <strong>{{ form.symbolIn.label(class='symbol-label green') }}</strong>
+            <div class="col-12 col-md-4">
+                <strong>{{ form.symbolIn.label() }}</strong>
                 {{ form.symbolIn(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
 
-            <div class="col-12 col-md-6">
-                <strong>{{ form.symbolOut.label(class='symbol-label red') }}</strong>
+            <div class="col-12 col-md-4">
+                <strong>{{ form.symbolOut.label() }}</strong>
                 {{ form.symbolOut(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+            </div>
+
+            <div class="col-12 col-md-4">
+                <strong>{{ form.ordertype.label() }}</strong>
+                {{ form.ordertype(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
         </div>
         <div class="row">

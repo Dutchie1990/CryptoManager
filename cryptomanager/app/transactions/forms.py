@@ -11,15 +11,19 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    symbolIn = SelectField(("BUY"), choices= [(x['symbol']).upper() for x in api.supported_coins], validators=[
+    symbolIn = SelectField(("BUY / SELL"), choices= [(x['symbol']).upper() for x in api.supported_coins], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    symbolOut = SelectField(("SELL"), choices= [], validators=[
+    symbolOut = SelectField(("VS Currency"), choices= [], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
     prize = StringField(("Prize"), validators=[
+                                        InputRequired("Input is required!"),
+                                        DataRequired("Data is required!")
+                                    ])
+    ordertype = SelectField(("Ordertype"), choices=["BUY", "SELL"], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])

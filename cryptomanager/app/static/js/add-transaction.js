@@ -28,8 +28,11 @@ volume_element.addEventListener('change', getPrize)
 $(".selectpicker").change(function () {
     if (this.name === "symbolOut")
         symbol_out = this.options[this.selectedIndex].value.toLowerCase()
-    else {
+    else if (this.name === 'symbolIn'){
         symbol_in = this.options[this.selectedIndex].value.toLowerCase()
+    }
+    else {
+        return;
     }
 
     getPrize()
