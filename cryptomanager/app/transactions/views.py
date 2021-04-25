@@ -5,7 +5,6 @@ from .forms import TransactionForm
 from ...app import api
 
 
-
 transactions = Blueprint('transactions', __name__, template_folder="templates")
 
 @transactions.route('/transactions', methods=["GET", "POST"])

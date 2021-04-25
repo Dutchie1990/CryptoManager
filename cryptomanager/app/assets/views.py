@@ -4,6 +4,7 @@ from .forms import DepositForm
 from ..models import Assets, User, Transactions
 from ...app import api
 import copy
+import json
 
 assets = Blueprint('assets', __name__, template_folder="templates")
 
@@ -53,3 +54,17 @@ def get_asset():
 
     return render_template('assets.html', form=form, assets=completed_assets_list, withdrawable_balance=withdrawable_balance, current_value=current_value)
 
+
+@assets.route('/fetch_owned_assets', methods=["GET"])
+@login_required
+def fetch_owned_assets():
+    try:
+        db_assets = Assets.objects.filter(userid=current_user.id)
+        return db_assets.to_json()
+    except Assets.DoesNotExist:
+        return None
+
+@assets.route('/fetch_supported_assets', methods=["GET"])
+@login_required
+def fetch__supported_assets():
+    return json.dumps(api.supported_coins)
