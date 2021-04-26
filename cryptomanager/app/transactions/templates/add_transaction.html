@@ -15,7 +15,7 @@
 </div>
 
 <div class="form">
-    <form method="POST" action="{{ url_for('auth.login') }}">
+    <form method="POST" action="{{ url_for('transactions.add_transaction') }}">
         {{ form.csrf_token }}
         {{ error_messages(form.errors) }}
         <div class="row">
@@ -48,7 +48,7 @@
         <div class="form-group d-flex justify-content-center">
             <a href="{{ url_for('transactions.get_transactions') }}" class="btn btn-danger col-md-3 m-2 m-md-4">Back</a>
             <button id="clear-button" class="btn btn-outline-dark col-md-3 m-2 m-md-4" disabled>Clear</button>
-            <button type="submit" id="submit-button" class="btn btn btn-dark col-md-3 m-2 m-md-4" disabled>Submit</button>
+            <button type="submit" id="submit-button" class="btn btn btn-dark col-md-3 m-2 m-md-4">Submit</button>
           </div>
     </form>
 </div>

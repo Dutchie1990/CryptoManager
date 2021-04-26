@@ -1,4 +1,4 @@
-from flask import flash
+from flask import flash, g
 # Extension for implementing WTForms for managing web forms
 from flask_wtf import FlaskForm
 from wtforms.fields import FloatField, StringField,SelectField
@@ -19,7 +19,7 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    prize = StringField(("Prize"), validators=[
+    prize = FloatField(("Prize"), validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
@@ -27,3 +27,22 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
+
+    @staticmethod
+    def validate_volume(form, field):
+        if form.ordertype.data == "BUY":
+            try:
+                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolOut.data)
+            except Assets.DoesNotExist:
+                raise ValidationError('Insufficient funds to make the order')
+            if form.prize.data > asset.amount:
+                raise ValidationError('Insufficient funds to make the order')
+            flash("You bought {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")
+        else:
+            try:
+                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolIn.data)
+            except Assets.DoesNotExist:
+                raise ValidationError('Insufficient funds to make the order')
+            if field.data > asset.amount:
+                raise ValidationError('Insufficient funds to make the order')
+            flash("You sold {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")

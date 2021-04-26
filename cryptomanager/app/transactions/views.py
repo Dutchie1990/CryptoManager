@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, g
 from flask_login import login_required, current_user
 from ..models import Transactions, Assets
 from .forms import TransactionForm
@@ -30,13 +30,14 @@ def add_transaction():
     if not current_user:
         redirect(url_for('auth.login'))
         flash("You need to be logged in for this functionality", "error")
-
+    g.user = current_user
     form = TransactionForm()
     form.symbolOut.choices = get_currencies()
 
+    if form.validate_on_submit():
+        print("succes")
+
     return render_template('add_transaction.html', form=form)
-
-
 
 
 @transactions.route('/transactions/dummy', methods=["GET"])
