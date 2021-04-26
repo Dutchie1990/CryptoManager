@@ -35,7 +35,33 @@ def add_transaction():
     form.symbolOut.choices = get_currencies()
 
     if form.validate_on_submit():
-        print("succes")
+        volume = form.volume.data
+        symbolIn = form.symbolIn.data
+        symbolOut = form.symbolOut.data
+        prize = form.prize.data
+        ordertype = form.ordertype.data
+        usd_prize = float(form.usd_prize.data)
+
+        if ordertype == "BUY":
+            #save the asset out to the database
+            assetOut = g.asset
+            amount = assetOut.amount - prize
+            #if amount is 0, delete otherwise update
+            if amount > 0:
+                Assets.objects(userid=assetOut.userid, asset_name=assetOut.asset_name).update_one(set__amount=amount)
+            else:
+                Assets.objects(userid=assetOut.userid, asset_name=assetOut.asset_name).delete()
+            #check if new asset exists
+            try:
+                asset = Assets.objects.get(userid=assetOut.userid, asset_name=symbolIn)
+                amount = asset.amount + volume
+                costs = ((asset.costs * asset.amount) + (volume * usd_prize))/amount
+                Assets.objects(userid=assetOut.userid, asset_name=symbolIn).update_one(set__amount=amount, set__costs=costs, upsert=False)
+            except Assets.DoesNotExist:
+                new_asset = Assets(userid=assetOut.userid, asset_name=symbolIn, amount=volume, costs=usd_prize)
+                new_asset.save()
+            transaction = Transactions(userid=assetOut.userid, ordertype=ordertype,volume=volume, symbolIn=symbolIn,symbolOut=symbolOut,prize=(prize/volume),costs=prize)
+            transaction.save()
 
     return render_template('add_transaction.html', form=form)
 

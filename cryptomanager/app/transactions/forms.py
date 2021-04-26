@@ -38,12 +38,13 @@ class TransactionForm(FlaskForm):
                 raise ValidationError('Insufficient funds to make the order')
             if form.prize.data > asset.amount:
                 raise ValidationError('Insufficient funds to make the order')
-            flash("You bought {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")
+            flash("You bought {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")  
         else:
             try:
-                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolIn.data)
+                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolIn.data)  
             except Assets.DoesNotExist:
                 raise ValidationError('Insufficient funds to make the order')
             if field.data > asset.amount:
                 raise ValidationError('Insufficient funds to make the order')
             flash("You sold {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")
+        g.asset = asset
