@@ -2,6 +2,7 @@ var owned_assets;
 var supported_assets;
 var volume_element = document.getElementById('volume')
 var prize_element = document.getElementById('prize')
+var usd_prize = document.getElementById('usd_prize')
 var symbol_out
 var symbol_in
 
@@ -53,11 +54,13 @@ function getPrize() {
     instance.get('/simple/price', {
         params: {
             ids: id_in,
-            vs_currencies: symbol_out
+            vs_currencies: symbol_out + ",usd"
         }
     }).then(function(response){
-        prize_element.value = parseFloat(response.data[id_in][symbol_out]) * volume
-    })
+        prize_element.value = parseFloat(response.data[id_in][symbol_out]) * volume;
+        usd_prize.value = parseFloat(response.data[id_in]['usd']) * volume;
+    });
+
 }
 
 

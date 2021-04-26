@@ -1,7 +1,7 @@
 from flask import flash, g
 # Extension for implementing WTForms for managing web forms
 from flask_wtf import FlaskForm
-from wtforms.fields import FloatField, StringField,SelectField
+from wtforms.fields import FloatField, StringField, SelectField, HiddenField
 from wtforms.validators import InputRequired, DataRequired, ValidationError
 from ..models import Assets
 from ...app import api
@@ -27,6 +27,7 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
+    usd_prize = HiddenField()
 
     @staticmethod
     def validate_volume(form, field):

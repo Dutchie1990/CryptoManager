@@ -17,6 +17,7 @@
 <div class="form">
     <form method="POST" action="{{ url_for('transactions.add_transaction') }}">
         {{ form.csrf_token }}
+        {{ form.usd_prize }}
         {{ error_messages(form.errors) }}
         <div class="row">
             <div class="col-12 col-md-4">
