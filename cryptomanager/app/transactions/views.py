@@ -82,87 +82,9 @@ def add_transaction():
         transaction = Transactions(userid=assetOut.userid, ordertype=ordertype.lower(), volume=volume,
                                        coin_symbol=coin_symbol, vs_currency=vs_currency, prize=(prize/volume), costs=prize)
         transaction.save()
-
-        #     new_asset = Assets(
-        #             userid=assetOut.userid, asset_name=symbolIn, amount=volume, costs=(volume/prize)*usd_prize)
-                
-
-
-        # if ordertype == "BUY":
-        #     # save the asset out to the database
-        #     assetOut = g.asset
-        #     amount = assetOut.amount - prize
-        #     # if amount is 0, delete otherwise update
-        #     if amount > 0:
-        #         Assets.objects(userid=assetOut.userid, asset_name=assetOut.asset_name).update_one(
-        #             set__amount=amount)
-        #     else:
-        #         Assets.objects(userid=assetOut.userid,
-        #                        asset_name=assetOut.asset_name).delete()
-        #     # check if new asset exists
-        #     try:
-        #         asset = Assets.objects.get(
-        #             userid=assetOut.userid, asset_name=symbolIn)
-        #         amount = asset.amount + volume
-        #         costs = ((asset.costs * asset.amount) +
-        #                  (volume * usd_prize))/amount
-        #         Assets.objects(userid=assetOut.userid, asset_name=symbolIn).update_one(
-        #             set__amount=amount, set__costs=costs, upsert=False)
-        #     except Assets.DoesNotExist:
-        #         new_asset = Assets(
-        #             userid=assetOut.userid, asset_name=symbolIn, amount=volume, costs=(volume/prize)*usd_prize)
-        #         new_asset.save()
-        #     transaction = Transactions(userid=assetOut.userid, ordertype=ordertype.lower(), volume=volume,
-        #                                symbolIn=symbolIn, symbolOut=symbolOut, prize=(prize/volume), costs=prize)
-        #     transaction.save()
-        # else:
-        #     # save the sold asset in to the database
-        #     assetOut = g.asset
-        #     amount = assetOut.amount - volume
-
-        #     # if amount is 0, delete otherwise update
-        #     if amount > 0:
-        #         Assets.objects(userid=assetOut.userid, asset_name=assetOut.asset_name).update_one(
-        #             set__amount=amount, upsert=False)
-        #     else:
-        #         Assets.objects(userid=assetOut.userid,
-        #                        asset_name=assetOut.asset_name).delete()
-
-        #     # save the other asset in to the database
-        #     try:
-        #         asset = Assets.objects.get(
-        #             userid=assetOut.userid, asset_name=symbolOut)
-        #         amount = asset.amount + prize
-        #         #if asset is usd there is no costs
-        #         if asset.asset_name != 'USD':
-        #             costs = ((asset.costs * asset.amount) +
-        #                      (volume * usd_prize))/amount
-        #             Assets.objects(userid=assetOut.userid, asset_name=symbolOut).update_one(
-        #                 set__amount=amount, set__costs=costs, upsert=False)
-        #         else:
-        #             Assets.objects(userid=assetOut.userid, asset_name=symbolOut).update_one(
-        #                 set__amount=amount, upsert=False)
-        #     except Assets.DoesNotExist:
-        #         #if asset is usd there is no costs
-        #         if symbolOut != 'USD':
-        #             new_asset = Assets(
-        #                 userid=assetOut.userid, asset_name=symbolOut, amount=prize, costs=(volume/prize)*usd_prize)
-        #         else:
-        #             new_asset = Assets(
-        #                 userid=assetOut.userid, asset_name=symbolOut, amount=prize)
-        #         new_asset.save()
-            
+        return redirect(url_for('transactions.get_transactions'))
 
     return render_template('add_transaction.html', form=form)
-
-
-@transactions.route('/transactions/dummy', methods=["GET"])
-@login_required
-def dummy():
-    transaction = Transactions(userid=current_user.id, ordertype="order", volume=0.25,
-                               symbolIn="BTC", symbolOut="USD", prize=55619.16, costs=1390.47)
-    transaction.save()
-    return redirect(url_for('transactions.get_transactions'))
 
 
 def get_currencies():
