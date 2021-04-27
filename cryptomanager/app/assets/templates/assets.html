@@ -4,16 +4,16 @@
 
 {% block styles %}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets-transactions.css')}}" type="text/css">
 {% endblock %}
 
 {% block content %}
 
-<div class="lead text-center">
+<div class="jumbotron text-center">
     <p>Withdrawable balance: <strong>{{ withdrawable_balance | trim }}</strong> USD </p>
     <p>Current value: <strong>{{ current_value | trim}}</strong> USD </p>
-    <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Deposit')">Deposit</button>
-    <button id="withdrawal" class="btn btn-danger m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('Withdrawal')">Withdrawal</button>
+    <button id="deposit" class="btn btn-success m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('deposit')">Deposit</button>
+    <button id="withdrawal" class="btn btn-danger m-2" data-toggle="modal" data-target="#depositModal" onclick="setTransactionType('withdrawal')">Withdrawal</button>
     <div class="my-2 my-md-4"></div>
 </div>
 <div class="justify-content-center">
@@ -23,7 +23,7 @@
             <tr>
                 <th data-field="Asset" data-sortable="true" scope="col">Asset</th>
                 <th data-field="Amount" data-sortable="true" scope="col">Amount</th>
-                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Costs (USD)</th>
+                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Rate</th>
                 <th class="d-none d-sm-block" data-field="Value" data-sortable="true" scope="col">Value (USD)</th>
                 <th data-field="P/L" data-sortable="true" scope="col">P/L</th>
             </tr>
@@ -34,7 +34,7 @@
                 <tr>
                     <td scope="row"><img src=""> {{ asset.asset_name }}</td>
                     <td>{{ asset.amount }}</td>
-                    <td class="d-none d-sm-block">{{ (asset.costs * asset.amount) | trim }}</td>
+                    <td class="d-none d-sm-block">{{ (asset.costs) | trim }} <strong>{{ asset.asset_name }}/USD</strong></td>
                     <td class="d-none d-sm-block">{{ (asset.prize * asset.amount) | trim }}</td>
                     {% if asset.p_l < 0 %}
                         <td style="color: red;">{{ asset.p_l | trim}}%</td>

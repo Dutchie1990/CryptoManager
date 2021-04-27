@@ -30,6 +30,7 @@ login_manager.login_message_category = "error"
 
 api = API()
 api.retrieve_symbols("/coins/list")
+api.retrieve_vs_currencies("/simple/supported_vs_currencies")
 
 from .auth.views import auth
 app.register_blueprint(auth)
@@ -39,6 +40,9 @@ app.register_blueprint(general)
 
 from .assets.views import assets
 app.register_blueprint(assets)
+
+from .transactions.views import transactions
+app.register_blueprint(transactions)
 
 @app.template_filter("capitalized")
 def capitalize(value):

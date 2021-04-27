@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, g
 from flask_login import login_required, current_user
 from .forms import DepositForm
-from ..models import Assets, User
+from ..models import Assets, User, Transactions
 from ...app import api
 import copy
+import json
 
 assets = Blueprint('assets', __name__, template_folder="templates")
 
@@ -38,8 +39,9 @@ def get_asset():
         current_value = Assets.calculate_current_value(completed_assets_list) + withdrawable_balance
     
     if form.validate_on_submit():
-        transaction_type = form.transaction_type.data
-        if transaction_type == 'Deposit':
+        transaction_type = form.transaction_type.data.lower()
+        amount = form.amount.data
+        if transaction_type == 'deposit':
             withdrawable_balance = g.value
         else:
             withdrawable_balance = g.value
@@ -47,6 +49,22 @@ def get_asset():
             Assets.objects(userid=g.user.id, asset_name='USD').delete()
         else:
             Assets.objects(userid=g.user.id, asset_name='USD').update_one(set__amount=withdrawable_balance, upsert=True)
+        transaction = Transactions(userid=g.user.id, ordertype=transaction_type, volume=amount)
+        transaction.save()
 
     return render_template('assets.html', form=form, assets=completed_assets_list, withdrawable_balance=withdrawable_balance, current_value=current_value)
 
+
+@assets.route('/fetch_owned_assets', methods=["GET"])
+@login_required
+def fetch_owned_assets():
+    try:
+        db_assets = Assets.objects.filter(userid=current_user.id)
+        return db_assets.to_json()
+    except Assets.DoesNotExist:
+        return None
+
+@assets.route('/fetch_supported_assets', methods=["GET"])
+@login_required
+def fetch__supported_assets():
+    return json.dumps(api.supported_coins)

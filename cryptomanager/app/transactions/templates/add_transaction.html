@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Transactions') }}{% endblock %}
+{% from '_error_messages.html' import error_messages %}
+{% set active_page = 'transactions' %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add-transaction.css')}}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h5>Manage your transaction</h5>
+</div>
+
+<div class="form">
+    <form method="POST" action="{{ url_for('transactions.add_transaction') }}">
+        {{ form.csrf_token }}
+        {{ form.usd_prize }}
+        {{ error_messages(form.errors) }}
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <strong>{{ form.coin_symbol.label() }}</strong>
+                {{ form.coin_symbol(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+            </div>
+
+            <div class="col-12 col-md-4">
+                <strong>{{ form.vs_currency.label() }}</strong>
+                {{ form.vs_currency(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+            </div>
+
+            <div class="col-12 col-md-4">
+                <strong>{{ form.ordertype.label() }}</strong>
+                {{ form.ordertype(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {{ form.volume.label }}
+                {{ form.volume(class='m-3', value='0') }}
+            </div>
+
+            <div class="col-12 col-md-6">
+                {{ form.prize.label}}
+                {{ form.prize(value='0', class='m-3') }}
+            </div>
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            <a href="{{ url_for('transactions.get_transactions') }}" class="btn btn-danger col-md-3 m-2 m-md-4">Back</a>
+            <button type="submit" id="submit-button" class="btn btn btn-dark col-md-3 m-2 m-md-4">Submit</button>
+          </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/add-transaction.js')}}"></script>
+{% endblock %}

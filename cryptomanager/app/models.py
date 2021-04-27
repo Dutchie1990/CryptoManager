@@ -2,9 +2,11 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 # Extension for implementing Flask-Login for authentication
 from flask_login import UserMixin
-from mongoengine import StringField, EmailField, FloatField, ReferenceField
+from mongoengine import StringField, EmailField, FloatField, ReferenceField, DateField
 # Imports for database usage and login manager from app
 from ..app import db, login_manager
+# Import datetime to calculate today's date
+import datetime
 
 class User(UserMixin, db.Document):
     firstname = db.StringField(required=True)
@@ -37,7 +39,7 @@ class Assets(db.Document):
     amount = db.FloatField(required=True)
     costs = db.FloatField(required=True)
 
-    def __init__(self, userid, asset_name, amount, costs="", *args, **kwargs):
+    def __init__(self, userid, asset_name, amount, costs=0, *args, **kwargs):
         super(Assets, self).__init__(*args, **kwargs)
         self.userid = userid
         self.asset_name = asset_name
@@ -54,3 +56,26 @@ class Assets(db.Document):
     def calculate_current_value(assets):
         current_value = sum([x.amount * x.prize for x in assets])
         return current_value
+
+class Transactions(db.Document):
+    userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
+    date = db.DateField(required=True)
+    ordertype = db.StringField(required=True)
+    volume = db.FloatField(required=True)
+    coin_symbol = db.StringField()
+    vs_currency = db.StringField()
+    prize = db.FloatField()
+    costs = db.FloatField()
+
+    def __init__(self, userid, ordertype, volume, coin_symbol="", vs_currency="", prize=0.0,  costs=0.0, *args, **kwargs):
+        super(Transactions, self).__init__(*args, **kwargs)
+        self.userid = userid
+        self.date = datetime.date.today()
+        self.ordertype = ordertype
+        self.coin_symbol = coin_symbol
+        self.vs_currency = vs_currency
+        self.prize = prize
+        self.volume = volume
+        self.costs = costs
+
+

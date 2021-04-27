@@ -1,0 +1,28 @@
+.jumbotron{
+    background-color: #F4FAFF !important;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
+.symbol-label{
+    margin-right: 2rem;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
+}
+
+.form{   
+    border-radius: 15px;
+    background-color: #F4FAFF;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
+.overflow{
+    overflow: visible !important;
+}
