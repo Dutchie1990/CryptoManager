@@ -23,7 +23,7 @@
             <tr>
                 <th data-field="Asset" data-sortable="true" scope="col">Asset</th>
                 <th data-field="Amount" data-sortable="true" scope="col">Amount</th>
-                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Costs (USD)</th>
+                <th class="d-none d-sm-block" data-field="Price" data-sortable="true" scope="col">Rate</th>
                 <th class="d-none d-sm-block" data-field="Value" data-sortable="true" scope="col">Value (USD)</th>
                 <th data-field="P/L" data-sortable="true" scope="col">P/L</th>
             </tr>
@@ -34,7 +34,7 @@
                 <tr>
                     <td scope="row"><img src=""> {{ asset.asset_name }}</td>
                     <td>{{ asset.amount }}</td>
-                    <td class="d-none d-sm-block">{{ (asset.costs * asset.amount) | trim }}</td>
+                    <td class="d-none d-sm-block">{{ (asset.costs) | trim }} <strong>{{ asset.asset_name }}/USD</strong></td>
                     <td class="d-none d-sm-block">{{ (asset.prize * asset.amount) | trim }}</td>
                     {% if asset.p_l < 0 %}
                         <td style="color: red;">{{ asset.p_l | trim}}%</td>

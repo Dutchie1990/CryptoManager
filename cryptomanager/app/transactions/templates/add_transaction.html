@@ -21,13 +21,13 @@
         {{ error_messages(form.errors) }}
         <div class="row">
             <div class="col-12 col-md-4">
-                <strong>{{ form.symbolIn.label() }}</strong>
-                {{ form.symbolIn(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+                <strong>{{ form.coin_symbol.label() }}</strong>
+                {{ form.coin_symbol(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
 
             <div class="col-12 col-md-4">
-                <strong>{{ form.symbolOut.label() }}</strong>
-                {{ form.symbolOut(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+                <strong>{{ form.vs_currency.label() }}</strong>
+                {{ form.vs_currency(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
 
             <div class="col-12 col-md-4">
@@ -48,7 +48,6 @@
         </div>
         <div class="form-group d-flex justify-content-center">
             <a href="{{ url_for('transactions.get_transactions') }}" class="btn btn-danger col-md-3 m-2 m-md-4">Back</a>
-            <button id="clear-button" class="btn btn-outline-dark col-md-3 m-2 m-md-4" disabled>Clear</button>
             <button type="submit" id="submit-button" class="btn btn btn-dark col-md-3 m-2 m-md-4">Submit</button>
           </div>
     </form>

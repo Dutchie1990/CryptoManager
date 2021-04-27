@@ -12,11 +12,11 @@
     margin-bottom: 2rem;
 }
 
-.deposit{
+.deposit, .buy{
     color:green;
 }
 
-.withdrawal{
+.withdrawal, .sell{
     color:red;
 }
 

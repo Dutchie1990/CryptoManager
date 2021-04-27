@@ -39,7 +39,7 @@ class Assets(db.Document):
     amount = db.FloatField(required=True)
     costs = db.FloatField(required=True)
 
-    def __init__(self, userid, asset_name, amount, costs="", *args, **kwargs):
+    def __init__(self, userid, asset_name, amount, costs=0, *args, **kwargs):
         super(Assets, self).__init__(*args, **kwargs)
         self.userid = userid
         self.asset_name = asset_name
@@ -62,18 +62,18 @@ class Transactions(db.Document):
     date = db.DateField(required=True)
     ordertype = db.StringField(required=True)
     volume = db.FloatField(required=True)
-    symbolIn = db.StringField()
-    symbolOut = db.StringField()
+    coin_symbol = db.StringField()
+    vs_currency = db.StringField()
     prize = db.FloatField()
     costs = db.FloatField()
 
-    def __init__(self, userid, ordertype, volume, symbolIn="", symbolOut="", prize=0.0,  costs=0.0, *args, **kwargs):
+    def __init__(self, userid, ordertype, volume, coin_symbol="", vs_currency="", prize=0.0,  costs=0.0, *args, **kwargs):
         super(Transactions, self).__init__(*args, **kwargs)
         self.userid = userid
         self.date = datetime.date.today()
         self.ordertype = ordertype
-        self.symbolIn = symbolIn
-        self.symbolOut = symbolOut
+        self.coin_symbol = coin_symbol
+        self.vs_currency = vs_currency
         self.prize = prize
         self.volume = volume
         self.costs = costs

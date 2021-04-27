@@ -11,11 +11,11 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    symbolIn = SelectField(("BUY / SELL"), choices= [(x['symbol']).upper() for x in api.supported_coins], validators=[
+    coin_symbol = SelectField(("BUY / SELL"), choices= [(x['symbol']).upper() for x in api.supported_coins], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    symbolOut = SelectField(("VS Currency"), choices= [], validators=[
+    vs_currency = SelectField(("VS Currency"), choices= [], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
@@ -33,18 +33,18 @@ class TransactionForm(FlaskForm):
     def validate_volume(form, field):
         if form.ordertype.data == "BUY":
             try:
-                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolOut.data)
+                asset = Assets.objects.get(userid=g.user.id, asset_name=form.vs_currency.data)
             except Assets.DoesNotExist:
                 raise ValidationError('Insufficient funds to make the order')
             if form.prize.data > asset.amount:
                 raise ValidationError('Insufficient funds to make the order')
-            flash("You bought {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")  
+            flash("You bought {} {} for {} {}".format(form.volume.data, form.coin_symbol.data, form.prize.data, form.vs_currency.data), "success")  
         else:
             try:
-                asset = Assets.objects.get(userid=g.user.id, asset_name=form.symbolIn.data)  
+                asset = Assets.objects.get(userid=g.user.id, asset_name=form.coin_symbol.data)  
             except Assets.DoesNotExist:
                 raise ValidationError('Insufficient funds to make the order')
             if field.data > asset.amount:
                 raise ValidationError('Insufficient funds to make the order')
-            flash("You sold {} {} for {} {}".format(form.volume.data, form.symbolIn.data, form.prize.data, form.symbolOut.data), "success")
+            flash("You sold {} {} for {} {}".format(form.volume.data, form.coin_symbol.data, form.prize.data, form.vs_currency.data), "success")
         g.asset = asset

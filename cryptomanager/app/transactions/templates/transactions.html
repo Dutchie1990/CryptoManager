@@ -22,7 +22,7 @@
                 <th data-field="Date" data-sortable="true" scope="col">Date</th>
                 <th data-field="Ordertype" data-sortable="true" scope="col">Ordertype</th>
                 <th data-field="Pair" scope="col">Pair</th>
-                <th class="d-none d-sm-block" data-field="Price" scope="col">Price</th>
+                <th class="d-none d-sm-block" data-field="Price" scope="col">Rate</th>
                 <th data-field="Volume" scope="col">Volume</th>
                 <th data-field="Cost" scope="col">Costs</th>
             </tr>
@@ -42,11 +42,11 @@
                     {% else %}
                         <tr>
                             <td scope="row">{{ transaction.date }}</td>
-                            <td>{{ transaction.ordertype | capitalize}}</td>
-                            <td>{{ transaction.symbolIn }}/{{ transaction.symbolOut }}</td>
-                            <td class="d-none d-sm-block">{{ transaction.prize }} {{ transaction.symbolOut }}</td>
+                            <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
+                            <td>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</td>
+                            <td class="d-none d-sm-block">{{ transaction.prize }} <strong>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</strong></td>
                             <td>{{transaction.volume}}</td>
-                            <td>{{ transaction.costs }} {{ transaction.symbolOut }} </td>
+                            <td>{{ transaction.costs }} {{ transaction.vs_currency }} </td>
                         </tr>
                     {% endif %}
                 {% endfor %}
