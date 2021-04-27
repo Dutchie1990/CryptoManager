@@ -66,7 +66,7 @@ def add_transaction():
                     set__amount=amount, set__costs=costs, upsert=False)
             except Assets.DoesNotExist:
                 new_asset = Assets(
-                    userid=assetOut.userid, asset_name=symbolIn, amount=volume, costs=usd_prize)
+                    userid=assetOut.userid, asset_name=symbolIn, amount=volume, costs=(volume/prize)*usd_prize)
                 new_asset.save()
             transaction = Transactions(userid=assetOut.userid, ordertype=ordertype, volume=volume,
                                        symbolIn=symbolIn, symbolOut=symbolOut, prize=(prize/volume), costs=prize)
@@ -89,6 +89,7 @@ def add_transaction():
                 asset = Assets.objects.get(
                     userid=assetOut.userid, asset_name=symbolOut)
                 amount = asset.amount + prize
+                #if asset is usd there is no costs
                 if asset.asset_name != 'USD':
                     costs = ((asset.costs * asset.amount) +
                              (volume * usd_prize))/amount
@@ -98,8 +99,13 @@ def add_transaction():
                     Assets.objects(userid=assetOut.userid, asset_name=symbolOut).update_one(
                         set__amount=amount, upsert=False)
             except Assets.DoesNotExist:
-                new_asset = Assets(
-                    userid=assetOut.userid, asset_name=symbolOut, amount=prize, costs=usd_prize)
+                #if asset is usd there is no costs
+                if symbolOut != 'USD':
+                    new_asset = Assets(
+                        userid=assetOut.userid, asset_name=symbolOut, amount=prize, costs=(volume/prize)*usd_prize)
+                else:
+                    new_asset = Assets(
+                        userid=assetOut.userid, asset_name=symbolOut, amount=prize)
                 new_asset.save()
             transaction = Transactions(userid=assetOut.userid, ordertype=ordertype, volume=volume,
                                        symbolIn=symbolIn, symbolOut=symbolOut, prize=(prize/volume), costs=prize)
