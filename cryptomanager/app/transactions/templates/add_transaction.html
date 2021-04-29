@@ -21,6 +21,10 @@
         {{ error_messages(form.errors) }}
         <div class="row">
             <div class="col-12 col-md-4">
+                <strong>{{ form.ordertype.label() }}</strong>
+                {{ form.ordertype(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
+            </div>
+            <div class="col-12 col-md-4">
                 <strong>{{ form.coin_symbol.label() }}</strong>
                 {{ form.coin_symbol(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
@@ -28,11 +32,6 @@
             <div class="col-12 col-md-4">
                 <strong>{{ form.vs_currency.label() }}</strong>
                 {{ form.vs_currency(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
-            </div>
-
-            <div class="col-12 col-md-4">
-                <strong>{{ form.ordertype.label() }}</strong>
-                {{ form.ordertype(class='m-3 selectpicker', **{'data-live-search': 'true'}) }}
             </div>
         </div>
         <div class="row">
