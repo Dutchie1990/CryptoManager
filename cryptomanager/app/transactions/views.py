@@ -67,10 +67,9 @@ def add_transaction():
                 Assets.objects(userid=assetOut.userid, asset_name=assetIn).update_one(
                         set__amount=assetIn_amount, upsert=False)
             else:
-                costs = ((assetIn_db.costs * assetIn_db.amount) + (usd_prize * volume))/assetIn_amount
+                costs = ((assetIn_db.costs * assetIn_db.amount) + (usd_prize * volume if ordertype == "BUY" else usd_prize * prize))/assetIn_amount
                 Assets.objects(userid=assetOut.userid, asset_name=assetIn).update_one(
                         set__amount=assetIn_amount, set__costs=costs, upsert=False)
-
         except Assets.DoesNotExist:
             #asset doesnt exist
             if assetIn == "USD":
