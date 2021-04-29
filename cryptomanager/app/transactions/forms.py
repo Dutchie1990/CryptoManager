@@ -23,7 +23,7 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    ordertype = SelectField(("Ordertype"), choices=["BUY", "SELL"], validators=[
+    ordertype = SelectField(("Order Type"), choices=["BUY", "SELL"], validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])

@@ -1,16 +1,25 @@
-var owned_assets;
-var supported_assets;
+//define elements
 var volume_element = document.getElementById('volume')
 var prize_element = document.getElementById('prize')
 var usd_prize_element = document.getElementById('usd_prize')
+
+//define variables
 var vs_currency
 var coin_symbol
 var ordertype
+var owned_assets;
+var supported_assets;
+
+//define xpaths
+var xpath_ordertype = "//button[@data-id='ordertype']"
+var xpath_vs_currency = "//button[@data-id='vs_currency']"
+var xpath_coin_symbol = "//button[@data-id='coin_symbol']"
 
 const instance = axios.create({
     baseURL: 'https://api.coingecko.com/api/v3',
 });
 
+//get the user's assets
 fetch('/fetch_owned_assets')
     .then(function (response) {
         return response.json();
@@ -18,6 +27,7 @@ fetch('/fetch_owned_assets')
         owned_assets = text;
     });
 
+//get the supported vs_currencies
 fetch('/fetch_supported_assets')
     .then(function (response) {
         return response.json();
@@ -25,22 +35,16 @@ fetch('/fetch_supported_assets')
         supported_assets = text;
     })
 
-volume_element.addEventListener('change', getPrize)
+volume_element.addEventListener('blur', getPrize)
 prize_element.addEventListener('blur', getUsdPrize)
 
 $(".selectpicker").change(function () {
-    let xpath_ordertype = "//button[@data-id='ordertype']"
-    var ordertype_el = document.evaluate(xpath_ordertype, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    ordertype = ordertype_el.singleNodeValue.title.toLowerCase()
+    //get current values
+    ordertype = getValueByXpath(xpath_ordertype)
+    coin_symbol = getValueByXpath(xpath_coin_symbol)
+    vs_currency = getValueByXpath(xpath_vs_currency)
 
-    let xpath_coin_symbol = "//button[@data-id='coin_symbol']"
-    var coin_symbol_el = document.evaluate(xpath_coin_symbol, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    coin_symbol = coin_symbol_el.singleNodeValue.title.toLowerCase()
-
-    let xpath_vs_currency = "//button[@data-id='vs_currency']"
-    var vs_currency_el = document.evaluate(xpath_vs_currency, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    vs_currency = vs_currency_el.singleNodeValue.title.toLowerCase()
-
+    //overwrite with selected value depend on which button is changed
     if (this.name === "vs_currency")
         vs_currency = this.options[this.selectedIndex].value.toLowerCase()
     else if (this.name === 'coin_symbol') {
@@ -50,24 +54,26 @@ $(".selectpicker").change(function () {
         ordertype = this.options[this.selectedIndex].value.toLowerCase()
     }
 
+    //get the current prize
     getPrize()
 })
 
 function getPrize() {
-    if (!coin_symbol) {
-        coin_symbol = document.getElementsByClassName('filter-option-inner-inner')[0].innerText.toLowerCase()
-    }
-    if (!vs_currency) {
-        vs_currency = document.getElementsByClassName('filter-option-inner-inner')[1].innerText.toLowerCase()
-    }
-
+    //if volume is not filled exit function
     let volume = parseFloat(volume_element.value)
     if (volume === 0) {
         return
     }
-    //let xpath = "//button[@data-id='ordertype']"
-    //var ordertype_el = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    //ordertype = ordertype_el.singleNodeValue.title
+
+    if (!ordertype){
+        ordertype = getValueByXpath(xpath_ordertype)
+    }
+    if (!coin_symbol){
+        coin_symbol = getValueByXpath(xpath_coin_symbol)
+    }
+    if (!vs_currency){
+        vs_currency = getValueByXpath(xpath_vs_currency)
+    }
 
     asset_in = supported_assets.filter(x => x.symbol == coin_symbol)
     id_in = asset_in[0].id
@@ -79,7 +85,7 @@ function getPrize() {
     }).then(function (response) {
         prize_element.value = parseFloat(response.data[id_in][vs_currency]) * volume;
         if (ordertype === "sell") {
-            usd_prize_element.value = parseFloat((volume_element.value * response.data[id_in]['usd']) / prize_element.value)
+            usd_prize_element.value = parseFloat(calcPrize(volume_element.value, response.data[id_in]['usd'], prize_element.value))
             console.log(usd_prize_element.value + "normal sell")
         } else {
             usd_prize_element.value = parseFloat(response.data[id_in]['usd'])
@@ -89,12 +95,6 @@ function getPrize() {
 }
 
 function getUsdPrize() {
-    if (!vs_currency) {
-        vs_currency = document.getElementsByClassName('filter-option-inner-inner')[1].innerText.toLowerCase()
-    }
-    if (!coin_symbol) {
-        coin_symbol = document.getElementsByClassName('filter-option-inner-inner')[0].innerText.toLowerCase()
-    }
     if (vs_currency === "usd") {
         usd_prize_element.value = prize_element.value / volume_element.value;
     } else {
@@ -112,16 +112,23 @@ function getUsdPrize() {
             }
         }).then(function (response) {
             if (ordertype === "sell") {
-                usd_prize_element.value = parseFloat((response.data[id_in]['usd'] * volume_element.value) / prize_element.value)
+                usd_prize_element.value = parseFloat(calcPrize(response.data[id_in]['usd'], volume_element.value, prize_element.value))
                 console.log(usd_prize_element.value + "adjusted sell")
             } else {
-                usd_prize_element.value = parseFloat((response.data[id_in]['usd'] * prize_element.value) / volume_element.value)
+                usd_prize_element.value = parseFloat(calcPrize(response.data[id_in]['usd'], prize_element.value, volume_element.value))
                 console.log(usd_prize_element.value + "adjusted buy")
             }
         });
     }
 }
 
+function getValueByXpath(Xpath){
+    let element = document.evaluate(Xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    return element.singleNodeValue.title.toLowerCase()
+}
 
+function calcPrize(a, b, c){
+    return (a * b ) / c 
+}
 
 

@@ -51,35 +51,34 @@ def add_transaction():
         # update asset out
         assetOut_amount = assetOut.amount - prize if ordertype == "BUY" else assetOut.amount - volume
         if assetOut_amount > 0:
-            Assets.objects(userid=assetOut.userid, asset_name=assetOut.asset_name).update_one(
+            Assets.objects(userid=current_user.id, asset_name=assetOut.asset_name).update_one(
                             set__amount=assetOut_amount)
         else:
-            Assets.objects(userid=assetOut.userid,
+            Assets.objects(userid=current_user.id,
                             asset_name=assetOut.asset_name).delete()
         
         #update or save assset in
         try:
             #asset exists
             assetIn_db = Assets.objects.get(
-                    userid=assetOut.userid, asset_name=assetIn)
+                    userid=current_user.id, asset_name=assetIn)
             assetIn_amount = assetIn_db.amount + volume if ordertype == "BUY" else assetIn_db.amount + prize
             if assetIn == "USD":
-                Assets.objects(userid=assetOut.userid, asset_name=assetIn).update_one(
+                Assets.objects(userid=current_user.id, asset_name=assetIn).update_one(
                         set__amount=assetIn_amount, upsert=False)
             else:
-                costs = ((assetIn_db.costs * assetIn_db.amount) + (usd_prize * volume))/assetIn_amount
-                Assets.objects(userid=assetOut.userid, asset_name=assetIn).update_one(
+                costs = ((assetIn_db.costs * assetIn_db.amount) + (usd_prize * volume if ordertype == "BUY" else usd_prize * prize))/assetIn_amount
+                Assets.objects(userid=current_user.id, asset_name=assetIn).update_one(
                         set__amount=assetIn_amount, set__costs=costs, upsert=False)
-
         except Assets.DoesNotExist:
             #asset doesnt exist
             if assetIn == "USD":
-                new_asset = Assets(userid=assetOut.userid, asset_name=assetIn, amount=(volume if ordertype == "BUY" else prize))
+                new_asset = Assets(userid=current_user.id, asset_name=assetIn, amount=(volume if ordertype == "BUY" else prize))
             else:      
-                new_asset = Assets(userid=assetOut.userid, asset_name=assetIn, amount=(volume if ordertype == "BUY" else prize), costs=usd_prize)
+                new_asset = Assets(userid=current_user.id, asset_name=assetIn, amount=(volume if ordertype == "BUY" else prize), costs=usd_prize)
             new_asset.save()
         
-        transaction = Transactions(userid=assetOut.userid, ordertype=ordertype.lower(), volume=volume,
+        transaction = Transactions(userid=current_user.id, ordertype=ordertype.lower(), volume=volume,
                                        coin_symbol=coin_symbol, vs_currency=vs_currency, prize=(prize/volume), costs=prize)
         transaction.save()
         return redirect(url_for('transactions.get_transactions'))
