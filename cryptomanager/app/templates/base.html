@@ -36,12 +36,18 @@
                         <a class="nav-link {{ 'active' if active_page == 'home' }}" href="{{ url_for('general.home') }}">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ 'active' if active_page == 'leaderboard' }}" href="{{ url_for('leaderboard.get_leaderboard') }}">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ 'active' if active_page == 'login' }}" href="{{ url_for('auth.login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ 'active' if active_page == 'register' }}" href="{{ url_for('auth.register') }}">Register</a>
                     </li>
                     {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if active_page == 'leaderboard' }}" href="{{ url_for('leaderboard.get_leaderboard') }}">Leaderboard</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {{ 'active' if active_page == 'assets' }}" href="{{ url_for('assets.get_asset') }}">Assets</a>
                     </li>
