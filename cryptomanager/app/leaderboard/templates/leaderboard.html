@@ -1,1 +1,98 @@
-<h1>Leaderboard</h1>
+{% extends 'base.html' %}
+{% block heading %}{{ ('Leaderboard') }}{% endblock %}
+{% set active_page = 'home' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/leaderboard.css')}}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h6>Remember that the market is a manic depressive.
+        <hr>
+        <div><strong>"Warren Buffett"</strong></div>
+    </h6>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row user-row">
+            <div class="col-1 d-flex align-items-center">
+                <div class="text-center"><strong>1</strong></div>
+            </div>
+            <div class="col-3 d-flex align-items-center">
+                <div class="text-center">Username: <strong>UserX</strong></div>
+            </div>
+            <div class="col-4 offset-md-1 d-flex align-items-center">
+                <div class="text-center">Profits: <strong>156%</strong></div>
+            </div>
+            <div class="col-3 d-flex align-items-center justify-content-center">
+                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2"
+                        data-toggle="collapse" data-target="#test">Explore profile</button></div>
+            </div>
+        </div>
+        <div id="test" class="collapse row">
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/btc.png') }}"
+                    alt=""><strong>BTC:</strong>
+                25%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/eth.png') }}"
+                    alt=""><strong>ETH:</strong>
+                10%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/trx.png') }}"
+                    alt=""><strong>TRX:</strong>
+                10%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/xrp.png') }}"
+                    alt=""><strong>XRP:</strong>
+                5%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/ant.png') }}"
+                    alt=""><strong>ANT:</strong>
+                35%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/html.png') }}"
+                    alt=""><strong>HTML:</strong>
+                15%</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row user-row">
+            <div class="col-1 d-flex align-items-center">
+                <div class="text-center"><strong>2</strong></div>
+            </div>
+            <div class="col-3 d-flex align-items-center">
+                <div class="text-center">Username: <strong>UserX</strong></div>
+            </div>
+            <div class="col-4 offset-md-1 d-flex align-items-center">
+                <div class="text-center">Profits: <strong>156%</strong></div>
+            </div>
+            <div class="col-3 d-flex align-items-center justify-content-center">
+                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2"
+                        data-toggle="collapse" data-target="#test1">Explore profile</button></div>
+            </div>
+        </div>
+        <div id="test1" class="collapse row">
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/btc.png') }}"
+                    alt=""><strong>BTC:</strong>
+                25%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/eth.png') }}"
+                    alt=""><strong>ETH:</strong>
+                10%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/trx.png') }}"
+                    alt=""><strong>TRX:</strong>
+                10%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/xrp.png') }}"
+                    alt=""><strong>XRP:</strong>
+                5%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/ant.png') }}"
+                    alt=""><strong>ANT:</strong>
+                35%</div>
+            <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/html.png') }}"
+                    alt=""><strong>HTML:</strong>
+                15%</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
