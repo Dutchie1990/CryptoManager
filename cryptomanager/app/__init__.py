@@ -54,3 +54,7 @@ def capitalize(value):
 @app.template_filter("trim")
 def trim(value):
     return '%.2f'%(value)
+
+@app.template_filter("image")
+def image(value):
+    return "/static/img/symbols/{}.png".format(value.lower())

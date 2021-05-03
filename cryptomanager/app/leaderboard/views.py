@@ -33,12 +33,9 @@ def get_leaderboard():
         user_info.calculate_assets_percentage()
         user_info.calculate_total_profit()
         leaderboard_data.append(user_info)
-    leaderboard_data.sort(key=sort_criteria)
+    leaderboard_data.sort(key=sort_criteria,reverse=True)
 
-        
-    print(users)
-    print(leaderboard_data)
-    return render_template('leaderboard.html', leaderboard_data=leaderboard_data)
+    return render_template('leaderboard.html', leaderboard_data=leaderboard_data, counter=0)
 
 class LeaderboardUser:
     def __init__(self, user, assets, usd_balance):

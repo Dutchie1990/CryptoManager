@@ -15,6 +15,34 @@
     </h6>
 </div>
 
+
+<div class="col-12">
+    {% for data in leaderboard_data %}
+    <div class="row user-row">
+        <div class="col-1 d-flex align-items-center">
+            <div class="text-center"><strong>{{ loop.index }}</strong></div>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+            <div class="text-center">Username: <strong>{{ data.user.firstname | capitalized }}</strong></div>
+        </div>
+        <div class="col-4 offset-md-1 d-flex align-items-center">
+            <div class="text-center">Profits: <strong>{{ data.user.total_profit | trim }} %</strong></div>
+        </div>
+        <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2 data-collapse"
+                 data-target="{{ loop.index }}">Explore profile</button>
+            </div>
+        </div>
+    </div>
+        <div id="{{ loop.index }}" class="hidden data-row row">
+            {% for asset in data.assets %}
+            <div class="col-3"><img src="{{ asset.asset_name | image }} "
+                alt=""><strong>{{ asset.asset_name }}:</strong>
+            {{ asset.percentage  | trim }}%</div>
+            {% endfor %}
+        </div>
+{% endfor %}
+
 <div class="row">
     <div class="col-12">
         <div class="row user-row">
@@ -28,11 +56,11 @@
                 <div class="text-center">Profits: <strong>156%</strong></div>
             </div>
             <div class="col-3 d-flex align-items-center justify-content-center">
-                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2"
-                        data-toggle="collapse" data-target="#test">Explore profile</button></div>
+                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2 data-collapse"
+                        data-toggle="" data-target="test">Explore profile</button></div>
             </div>
         </div>
-        <div id="test" class="collapse row">
+        <div id="test" class="hidden data-row row">
             <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/btc.png') }}"
                     alt=""><strong>BTC:</strong>
                 25%</div>
@@ -54,6 +82,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="row">
     <div class="col-12">
@@ -68,11 +98,11 @@
                 <div class="text-center">Profits: <strong>156%</strong></div>
             </div>
             <div class="col-3 d-flex align-items-center justify-content-center">
-                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2"
-                        data-toggle="collapse" data-target="#test1">Explore profile</button></div>
+                <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2 data-collapse"
+                        data-toggle="" data-target="test1">Explore profile</button></div>
             </div>
         </div>
-        <div id="test1" class="collapse row">
+        <div id="test1" class="hidden data-row row">
             <div class="col-3"><img src="{{ url_for('static', filename='img/symbols/btc.png') }}"
                     alt=""><strong>BTC:</strong>
                 25%</div>
@@ -95,4 +125,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/leaderboard.js')}}"></script>
 {% endblock %}
