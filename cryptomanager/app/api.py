@@ -43,9 +43,7 @@ class API():
                 cls.supported_vs_currency.append(item)
 
 
-    def retrieve_current_prize(self, rel_url, list_assets):
-        url = self.BASE_URL + rel_url
-
+    def retrieve_current_prizes(self, rel_url, list_assets):
         for asset in list_assets:
             for coin in self.supported_coins:
                 if (asset.asset_name).lower() == coin['symbol']:
@@ -54,12 +52,14 @@ class API():
         querystring = ""
         querystring = (','.join(x.id for x in list_assets)).lower()
 
-        payload = {'ids': querystring, 'vs_currencies': "usd"}
-        response = requests.get(url, payload)
-
-        x = response.json()
+        x = self.retrieve_current_prize(rel_url, querystring)
 
         for asset in list_assets:
             asset.prize = x[asset.id]['usd']
 
         return list_assets
+    
+    def retrieve_current_prize(self, rel_url, querystring):
+        url = self.BASE_URL + rel_url
+        payload = payload = {'ids': querystring, 'vs_currencies': "usd"}
+        return requests.get(url, payload).json()

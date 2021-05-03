@@ -33,7 +33,7 @@ def get_asset():
         if usd_balance:
             withdrawable_balance = usd_balance.amount
             list_assets.remove(usd_balance)
-        updated_list_assets = api.retrieve_current_prize(
+        updated_list_assets = api.retrieve_current_prizes(
         '/simple/price', list_assets)
         completed_assets_list = Assets.calculate_profits(updated_list_assets)
         current_value = Assets.calculate_current_value(completed_assets_list) + withdrawable_balance
