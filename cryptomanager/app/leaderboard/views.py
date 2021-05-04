@@ -44,11 +44,11 @@ class LeaderboardUser:
         self.usd_balance = usd_balance
     
     def calculate_assets_percentage(self):
-        total_value = sum([(x.prize) for x in self.assets]) + self.usd_balance.amount if self.usd_balance else sum([(x.prize) for x in self.assets]) 
+        total_value = sum([(x.prize * x.amount) for x in self.assets]) + self.usd_balance.amount if self.usd_balance else sum([(x.prize * x.amount) for x in self.assets]) 
         if self.usd_balance:
             self.usd_balance.percentage = (self.usd_balance.amount / total_value) * 100
         for asset in self.assets:
-            asset.percentage = (asset.prize / total_value) * 100
+            asset.percentage = ((asset.prize * asset.amount) / total_value) * 100
     
     def calculate_total_profit(self):
         self.user.total_profit = sum([x.p_l for x in self.assets])

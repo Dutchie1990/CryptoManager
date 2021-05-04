@@ -35,6 +35,11 @@
         </div>
     </div>
         <div id="{{ loop.index }}" class="hidden data-row row">
+            {% if data.usd_balance %}
+                <div class="col-3"><img src="{{ data.usd_balance.asset_name | image }} "
+                    alt=""><strong>USD:</strong>
+                {{ data.usd_balance.percentage  | trim }}%</div>
+            {% endif %}
             {% for asset in data.assets %}
             <div class="col-3"><img src="{{ asset.asset_name | image }} "
                 alt=""><strong>{{ asset.asset_name }}:</strong>
@@ -47,7 +52,7 @@
     <div class="col-12">
         <div class="row user-row">
             <div class="col-1 d-flex align-items-center">
-                <div class="text-center"><strong>1</strong></div>
+                <div class="text-center"><strong>3</strong></div>
             </div>
             <div class="col-3 d-flex align-items-center">
                 <div class="text-center">Username: <strong>UserX</strong></div>
@@ -89,7 +94,7 @@
     <div class="col-12">
         <div class="row user-row">
             <div class="col-1 d-flex align-items-center">
-                <div class="text-center"><strong>2</strong></div>
+                <div class="text-center"><strong>4</strong></div>
             </div>
             <div class="col-3 d-flex align-items-center">
                 <div class="text-center">Username: <strong>UserX</strong></div>
