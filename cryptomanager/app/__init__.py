@@ -44,6 +44,9 @@ app.register_blueprint(assets)
 from .transactions.views import transactions
 app.register_blueprint(transactions)
 
+from .leaderboard.views import leaderboard
+app.register_blueprint(leaderboard)
+
 @app.template_filter("capitalized")
 def capitalize(value):
     return value.capitalize()
@@ -51,3 +54,7 @@ def capitalize(value):
 @app.template_filter("trim")
 def trim(value):
     return '%.2f'%(value)
+
+@app.template_filter("image")
+def image(value):
+    return "/static/img/symbols/{}.png".format(value.lower())
