@@ -22,9 +22,15 @@ class API():
         supported_images = [''.join(val.split())[
                 :-4] for val in os.listdir("cryptomanager/app/static/img/symbols")]
 
-        for item in response.json():   
-            if item['symbol'] in supported_images:
-                cls.supported_coins.append({'symbol':item['symbol'], 'id':item['id'], 'name':item['name']})
+        # get only 1 id for 1 symbol
+        uniqueSymbol = []
+        for item in response.json(): 
+            if(item["symbol"] not in uniqueSymbol):
+                uniqueSymbol.append(item["symbol"])
+                if item['symbol'] in supported_images:
+                    cls.supported_coins.append({'symbol':item['symbol'], 'id':item['id'], 'name':item['name']})
+
+            
     
     @classmethod
     def retrieve_vs_currencies(cls, rel_url):
@@ -61,5 +67,5 @@ class API():
     
     def retrieve_current_prize(self, rel_url, querystring):
         url = self.BASE_URL + rel_url
-        payload = payload = {'ids': querystring, 'vs_currencies': "usd"}
+        payload = {'ids': querystring, 'vs_currencies': "usd"}
         return requests.get(url, payload).json()

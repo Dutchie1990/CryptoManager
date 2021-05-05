@@ -9,8 +9,9 @@ def get_leaderboard():
     leaderboard_data = []
     users = User.objects().only('id', 'firstname')
     assets_names= [x.lower() for x in Assets.objects().distinct(field="asset_name") if x != "USD"]
-    getid = lambda assets : [x['id'] for x in api.supported_coins if x['symbol'] in assets]
-    assets_querystring = ",".join(getid(assets_names))
+    getid_list = lambda assets : [x['id'] for x in api.supported_coins if x['symbol'] in assets]
+    getid = lambda assets : [x['id'] for x in api.supported_coins if x['symbol'] == assets]
+    assets_querystring = ",".join(getid_list(assets_names))
     prices = api.retrieve_current_prize('/simple/price', assets_querystring)
     for user in users:
         list_assets = []
