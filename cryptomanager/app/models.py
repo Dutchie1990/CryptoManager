@@ -28,7 +28,9 @@ class User(UserMixin, db.Document):
 @login_manager.user_loader
 def load_user(user_id):
     try: 
-        return User.objects.get(id=user_id) 
+        return User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return None
     except Exception as e: 
         print(e)
         raise

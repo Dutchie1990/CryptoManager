@@ -39,6 +39,14 @@ background-color: red;
 background-color: green;
 }
 
+.red, .withdrawal, .sell{
+    color:red;
+}
+
+.green, .deposit, .buy{
+    color:green;
+}
+
 @media (min-width: 992px) {
     h1 {
     font-size: 3rem;

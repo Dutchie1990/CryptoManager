@@ -12,14 +12,6 @@
     margin-bottom: 2rem;
 }
 
-.deposit, .buy{
-    color:green;
-}
-
-.withdrawal, .sell{
-    color:red;
-}
-
 @media (min-width: 576px) {
     .d-sm-block {
         display: table-cell !important;
