@@ -73,11 +73,8 @@ The leaderboard is a open for everyone part of the platform. The aim of this pag
 - Presentation
 
 #### <strong>Error handling</strong>
-The error handling is part of defensive programming. In order to prevent the application to digest malicious data, some error handling measures are in place. Firstly, the unauthorized error, page not found error and also an internal service error. Those errors will be catched and the user will be redirected to the page, respectively. In case of an unknown exception or exception which has not their own page, the general error page will be shown. 
+The error handling is part of defensive programming. In order to prevent the application to digest malicious data, some error handling measures are in place. Firstly, the unauthorized error, page not found error and also an internal service error. Those errors will be catched and the user will be redirected to the error page.
 #### Features 
-- Presentation 404
-- Presentation 401
-- Presentation 500
 - Presentation general
 
 ### Nice to have 
@@ -87,7 +84,7 @@ One downside of the platform is the manual input used from the user to register 
 
 The website will contain different pages as well for logged in users and not logged in users. The following tree map structure will further outline the intented structure for the website. 
 
-- ( insert picture of treemap )
+<img src="cryptomanager\app\static\img\tree-map.jpg">
 
 Furthermore, the portfolio is be compatible with all kind of devices. Small design changes can be expected such as omitting some data at smaller devices screens. But the main functionalities should be easy to use and understand on all devices. 
 
@@ -103,17 +100,29 @@ The webapp consist out of the following views:
 - Deposit/Withdrawal view
 - Transactions view
 - Add transaction view 
-- Logout view
-- 404 (page not found exception) error view 
-- 401 (unauthorized exception) error view 
-- 500 (internal server error ) error view 
 - General error view
 
 ### Desktop design
 ### Tablet design
 ### Mobile design
 
+# Structure
 
+To optimize the user's experience of the site, it is design is very simple and basic. Relaxing colors are used with maximum contrast. The next colors are used in this project. 
+
+<img src="cryptomanager\app\static\img\color-pallet.png">
+
+The projects typography is standard to maximize the simplicity of the application. On bigger screens the headers are uppercase to emphasize headings information. 
+
+# Database design
+# Features
+# Technologies & Tools
+# Testing
+# Deployment
+# Credits
+
+
+### Used Websites
 https://dev.to/blankgodd/creating-a-blueprint-based-flask-app-199h
 
 
