@@ -18,7 +18,11 @@
 
 <div class="col-12">
     {% for data in leaderboard_data %}
-    <div class="row user-row">
+    {% if data.user.id == user.id %}
+        <div class="row user-row my-row">
+    {% else %}
+        <div class="row user-row ">
+    {% endif %}
         <div class="col-1 d-flex align-items-center">
             <div class="text-center"><strong>{{ loop.index }}</strong></div>
         </div>
@@ -26,7 +30,11 @@
             <div class="text-center">Username: <strong>{{ data.user.firstname | capitalized }}</strong></div>
         </div>
         <div class="col-4 offset-md-1 d-flex align-items-center">
-            <div class="text-center">Profits: <strong>{{ data.user.total_profit | trim }} %</strong></div>
+            {% if data.user.total_profit > 0 %}
+                <div class="text-center">Profits: <strong class="green">{{ data.user.total_profit | trim }} %</strong></div>
+            {% else %}
+                <div class="text-center">Profits: <strong class="red">{{ data.user.total_profit | trim }} %</strong></div>
+            {% endif %}
         </div>
         <div class="col-3 d-flex align-items-center justify-content-center">
             <div class="text-center"><button type="button" class="btn btn-secondary btn-sm m-2 data-collapse"

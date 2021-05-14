@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import current_user
 from ..models import Assets, User
 from ...app import api
 
@@ -6,6 +7,9 @@ leaderboard = Blueprint('leaderboard', __name__, template_folder='templates')
 
 @leaderboard.route('/leaderboard')
 def get_leaderboard():
+    user = None
+    if current_user:
+        this_user = current_user
     leaderboard_data = []
     users = User.objects().only('id', 'firstname')
     assets_names= [x.lower() for x in Assets.objects().distinct(field="asset_name") if x != "USD"]
@@ -36,7 +40,7 @@ def get_leaderboard():
         leaderboard_data.append(user_info)
     leaderboard_data.sort(key=sort_criteria,reverse=True)
 
-    return render_template('leaderboard.html', leaderboard_data=leaderboard_data, counter=0)
+    return render_template('leaderboard.html', leaderboard_data=leaderboard_data, user=this_user, counter=0)
 
 class LeaderboardUser:
     def __init__(self, user, assets, usd_balance):

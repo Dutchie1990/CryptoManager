@@ -2,6 +2,7 @@
 var volume_element = document.getElementById('volume')
 var prize_element = document.getElementById('prize')
 var usd_prize_element = document.getElementById('usd_prize')
+var submit_button = document.getElementById('submit-button')
 
 //define variables
 var vs_currency
@@ -17,6 +18,7 @@ var xpath_coin_symbol = "//button[@data-id='coin_symbol']"
 
 const instance = axios.create({
     baseURL: 'https://api.coingecko.com/api/v3',
+    mode: 'no-cors'
 });
 
 //get the user's assets
@@ -59,6 +61,9 @@ $(".selectpicker").change(function () {
 })
 
 function getPrize() {
+    // disable submit-button
+    submit_button.setAttribute("disabled", true)
+
     //if volume is not filled exit function
     let volume = parseFloat(volume_element.value)
     if (volume === 0) {
@@ -91,10 +96,14 @@ function getPrize() {
             usd_prize_element.value = parseFloat(response.data[id_in]['usd'])
             console.log(usd_prize_element.value + "normal buy")
         }
+        submit_button.removeAttribute("disabled")
     });
 }
 
 function getUsdPrize() {
+    //disable submit
+    submit_button.setAttribute("disabled", true)
+
     if (vs_currency === "usd") {
         usd_prize_element.value = prize_element.value / volume_element.value;
     } else {
@@ -118,6 +127,7 @@ function getUsdPrize() {
                 usd_prize_element.value = parseFloat(calcPrize(response.data[id_in]['usd'], prize_element.value, volume_element.value))
                 console.log(usd_prize_element.value + "adjusted buy")
             }
+            submit_button.removeAttribute("disabled")
         });
     }
 }

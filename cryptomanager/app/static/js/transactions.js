@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         "searching": false,
         "order": [["0", "desc"]],
         "aLengthMenu": [2, 5, 10, 25],
-        "iDisplayLength": 2,
+        "iDisplayLength": 5,
         "pagingType": "numbers",
         "info": false,
     });
