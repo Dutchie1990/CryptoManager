@@ -115,6 +115,11 @@ To optimize the user's experience of the site, it is design is very simple and b
 The projects typography is standard to maximize the simplicity of the application. On bigger screens the headers are uppercase to emphasize headings information. 
 
 # Database design
+
+The database provider for the project is MongoDB. This is a non-relational database based on documents. The following database scheme is used for this project including 3 documents. 
+
+<img src="cryptomanager\app\static\img\database-scheme.jpg">
+
 # Features
 # Technologies & Tools
 # Testing
