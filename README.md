@@ -118,7 +118,7 @@ The projects typography is standard to maximize the simplicity of the applicatio
 
 The database provider for the project is MongoDB. This is a non-relational database based on documents. The following database scheme is used for this project including 3 documents. 
 
-<img src="cryptomanager\app\static\img\database-scheme.jpg">
+<img src="cryptomanager\app\static\img\database-scheme.png">
 
 # Features
 # Technologies & Tools
