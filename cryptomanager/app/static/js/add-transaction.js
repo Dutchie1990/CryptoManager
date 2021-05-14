@@ -18,6 +18,7 @@ var xpath_coin_symbol = "//button[@data-id='coin_symbol']"
 
 const instance = axios.create({
     baseURL: 'https://api.coingecko.com/api/v3',
+    mode: 'no-cors'
 });
 
 //get the user's assets
