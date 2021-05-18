@@ -114,17 +114,36 @@ The database provider for the project is MongoDB. This is a non-relational datab
 This epic is the entry point of the website, from here the users can navigate to the login or register page as well to the leaderboard. 
 #### Features 
 - Presentation
+
+The presentation of the homescreen is very basic. The background give some inside in how the app looks like. Furthermore, there are buttons, 'Register now!' and 'Login' which are call to action buttons. At last, there is also a possibility to access the leaderboard by the link on in the navigation bar.
+
 - Button functionality
+
+The button 'Register now!' must lead to the register page and the button 'Login' must lead to the login page.
 
 
 #### <strong>Login/Register</strong>
 This epic enables users or potential users to make an account and login to the platform. The user will be connected to his own assets and transactions make the platform personalized for each user. Also, the options to register a deposit or a transaction can only be made when a user is logged on to his account. Lastly, a user must be able to delete his account with all underlying assets and transactions as well. 
 #### Features 
 - Presentation
+
+The epic 'Login/Register' consist of 2 pages, the register page and the login page. As a user successfully makes a profile there must be success message as well as the login is successfull. The success messages must be in a green box and the error messages must be in a red box. 
+
 - Login 
+
+As a user already have profile the emailaddress and the password should be match with the data in the database. When there is a match the user profile is loaded. If there is no match the user will see an error message. Furthermore, there must be field validation like the password should be longer then 5 characters and the email field should include a '@' and should be longer then 5 characters. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. 
+
 - Logout
+
+As a user is logged in the logout navigation link should be visible for the user. When the user click the logout button, the user will be logged out and redirected to the homepage. It is not possible for the user to access their profile again before log in again. 
+
 - Register 
-- Autorize 
+
+If a user decide to make profile, he should fill in the register form, where he should register his firstname, emailaddress and password. To extra check the password, the user should repeat his newly chosen password. There are several frontend field validation such as firstname should be longer then 3 characters, email should include '@' and should be longer then 5 characters, password field should be longer the 5 characters and the confirm password field should be the same as the password field. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. In the backend there is also a validation if the emailaddress already exists, when the emailaddress is already in use the user is not able to make a new profile with the same emailaddress. When the user is succesfully registered, the user is automatically logged in and can work with his profile
+
+- Delete 
+
+Due to limited time this feature is not implemented. 
 
 #### <strong>Assets</strong> 
 This epic consist out off different features which are connected to the assets management of the user. The user will be able to register their asset in USD. From their they can obtain other assets by doing transactions. Those assets will be visually presented by to the user as well the unrealized profits will be shown. Also a complete valuation will be shown to the user to make them able to monitor their assets closely with real-time information.  
