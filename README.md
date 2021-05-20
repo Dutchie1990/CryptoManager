@@ -195,10 +195,15 @@ The leaderboard is a open for everyone part of the platform. The aim of this pag
 #### Features 
 - Presentation
 
+In the leaderboard a overview of the best 10 profiles are shown based on profits and losses. The username is shown along with the profits and a button to explore their profile. When the explore button is clicked the, an overview of the assets is given in percentages. Whenever a logged in user is in the list of the best profiles, the color of his line will be different from the others. 
+
 ## <strong>Error handling</strong>
 The error handling is part of defensive programming. In order to prevent the application to digest malicious data, some error handling measures are in place. Firstly, the unauthorized error, page not found error and also an internal service error. Those errors will be catched and the user will be redirected to the error page.
 #### Features 
 - Presentation general
+
+The error page consist of a standard text and a 'go back' button, which leads to the homepage again.
+
 # Technologies & Tools
 # Testing
 # Deployment
