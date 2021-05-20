@@ -110,7 +110,7 @@ The database provider for the project is MongoDB. This is a non-relational datab
 <img src="cryptomanager\app\static\img\database-scheme.png">
 
 # Epics & Features 
-#### <strong>Homescreen</strong>
+## <strong>Homescreen</strong>
 This epic is the entry point of the website, from here the users can navigate to the login or register page as well to the leaderboard. 
 #### Features 
 - Presentation
@@ -122,7 +122,7 @@ The presentation of the homescreen is very basic. The background give some insid
 The button 'Register now!' must lead to the register page and the button 'Login' must lead to the login page.
 
 
-#### <strong>Login/Register</strong>
+## <strong>Login/Register</strong>
 This epic enables users or potential users to make an account and login to the platform. The user will be connected to his own assets and transactions make the platform personalized for each user. Also, the options to register a deposit or a transaction can only be made when a user is logged on to his account. Lastly, a user must be able to delete his account with all underlying assets and transactions as well. 
 #### Features 
 - Presentation
@@ -145,28 +145,33 @@ If a user decide to make profile, he should fill in the register form, where he 
 
 Due to limited time this feature is not implemented. 
 
-#### <strong>Assets</strong> 
+## <strong>Assets</strong> 
 This epic consist out off different features which are connected to the assets management of the user. The user will be able to register their asset in USD. From their they can obtain other assets by doing transactions. Those assets will be visually presented by to the user as well the unrealized profits will be shown. Also a complete valuation will be shown to the user to make them able to monitor their assets closely with real-time information.  
 #### Features 
 - Presentation
+At the asset page the user should get an overview of his current assets and he should have the possibility to make a deposit and/or withdrawal of fiat currency (USD). The assets are presented in a table where the user can find the asset name, the amount, the buying rate against usd, the total value and the profit or loss since the user bought the assets in percentage. 
 - Deposit 
+In the jumbtron there is a deposit button which opens up a modal to make a deposit. When an number is entered, the confirm button will be available to make the deposit. When the user enter a non number, there will be a validation error. Lastly, when a user enter some value in the input box the clear button will be available for clearing the values. If the user make a valid desposit the transanction will be saved in the transaction table as well the asset will be saved and added to the withdrawable balance and also can be used to make new transaction or withdraw again.
 - Withdrawal
+In the jumbtron there is a deposit button which opens up a modal to make a withdraw. When an number is entered, the confirm button will be available to make the withdraw. When the user enter a non number, there will be a validation error. Lastly, when a user enter some value in the input box the clear button will be available for clearing the values. When a user try to make a withdrawal, the value will be validated. If the user does not have enough withdrawable funds available there will be a validation error. In case the user have sufficient withdrawable currency availble, the withdraw value is substracted from the withdrawable balance. 
 - Live valuation
+The asset page has a live validation of the current assets. This value will be shown in the Value field of the table. The web api which is used to obtain the current value of the assets is coingecko. 
 - Profit and Loss 
+The profit and loss collumn will be a calculation of the appreciation of depreciation of the assets value since the moment the user obtain the asset. When the asset is percentage is positive it will be a green color and whenever the percentage is negative the color will be red. 
 
-#### <strong>Transactions</strong> 
+## <strong>Transactions</strong> 
 The transactions are as well a backbone of the platform. As soon the users register their first asset in USD, they are able to register their transaction. Those transactions will be saved into the database and can be looked into. 
 #### Features 
 - Presentation
 - Transaction validation 
 - Add transaction
 
-#### <strong>Leaderboard</strong>
+## <strong>Leaderboard</strong>
 The leaderboard is a open for everyone part of the platform. The aim of this page is to inform people about the most succesfull portfolio's. The overview show the top 10 succesfull portfolio's and give an overview which assets are included in the portfolio. 
 #### Features 
 - Presentation
 
-#### <strong>Error handling</strong>
+## <strong>Error handling</strong>
 The error handling is part of defensive programming. In order to prevent the application to digest malicious data, some error handling measures are in place. Firstly, the unauthorized error, page not found error and also an internal service error. Those errors will be catched and the user will be redirected to the error page.
 #### Features 
 - Presentation general
