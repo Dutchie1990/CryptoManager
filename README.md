@@ -185,6 +185,7 @@ When the ordertype is 'BUY' the user will obtain the currency which is selected 
 When the ordertype is 'SELL', the user will sell the currency which is selected at tthe BUY/SELL dropdown and the user will obtain the coin or currency which is selected by the VS currency field
 
 - Transaction validation and calculation
+
 In both cases, buy and sell orders, the amount of VS currency or the currency which the user want to sell is validated whether it is sufficient. When the user do not have sufficient funds, there will be an error message. 
 
 For all the transactions the original price paid in USD is calculated and save in the asset table. If the asset already exists the avarage price for the asset will be calculated. Whenever a user manually adjust the price, then the new USD value is also calculated. The USD price is used in the asset page to calculate the profit and loss per asset. 
