@@ -173,8 +173,21 @@ The profit and loss collumn will be a calculation of the appreciation of depreci
 The transactions are as well a backbone of the platform. As soon the users register their first asset in USD, they are able to register their transaction. Those transactions will be saved into the database and can be looked into. 
 #### Features 
 - Presentation
-- Transaction validation 
+
+The transactions are presented in a table. The following values are presented to the users: the date of the transaction, the ordertype, the pair, the rate based on the pair traded, the volume of the transaction and the costs of the transaction. Furthermore, is there a button to add a transaction which opens a new page to add the transactions. 
+
 - Add transaction
+
+In the transactions screen the user can choose whether he want to sell or buy assets with a dropdown. When the user select his ordertype the user should choose which asset he will buy or sell. At last, the user must also enter the VS currency which is the currency against the trade will be done. When the user decided which coin he will buy or sell against which currency or coin, the user can input the volume. When the volume is entered the prize of the transaction is calculated live. Lastly, when a user also want to adjust the prize of the transaction, the user can manually adjust the prize's value. 
+
+When the ordertype is 'BUY' the user will obtain the currency which is selected at the BUY/SELL dropdown and the user will pay with the coin or currency which is selected by the VS currency field
+
+When the ordertype is 'SELL', the user will sell the currency which is selected at tthe BUY/SELL dropdown and the user will obtain the coin or currency which is selected by the VS currency field
+
+- Transaction validation and calculation
+In both cases, buy and sell orders, the amount of VS currency or the currency which the user want to sell is validated whether it is sufficient. When the user do not have sufficient funds, there will be an error message. 
+
+For all the transactions the original price paid in USD is calculated and save in the asset table. If the asset already exists the avarage price for the asset will be calculated. Whenever a user manually adjust the price, then the new USD value is also calculated. The USD price is used in the asset page to calculate the profit and loss per asset. 
 
 ## <strong>Leaderboard</strong>
 The leaderboard is a open for everyone part of the platform. The aim of this page is to inform people about the most succesfull portfolio's. The overview show the top 10 succesfull portfolio's and give an overview which assets are included in the portfolio. 
