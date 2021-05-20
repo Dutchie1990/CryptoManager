@@ -205,6 +205,36 @@ The error handling is part of defensive programming. In order to prevent the app
 The error page consist of a standard text and a 'go back' button, which leads to the homepage again.
 
 # Technologies & Tools
+
+### Languages
+
+- HTML - used to setup the presentation of the flask application
+- CSS - used to add custom styling to the flask application
+- Python - used to setup the flask application as well communication with database and api
+- JavaScript - used for different purposes as communication with the flask app and frontend validations
+
+### programs
+
+- VS code - IDE used to build the project
+- Github - Used for source control and to make pull requests
+- Git - Used to make branches for different assets and commits 
+- Outklip - Used to make gif files to document testing
+- Moon Modeler - Used to make the database design
+- MongoDB Atlas - Used as database provider
+- Heroku - Used for application deployement
+
+### Most important dependencies 
+
+- Jquerydatatables - Used to render the asset and transaction data in tables
+- Flask - Used as microframework to make the application
+- Flask-WTF - Used in order to easily validate and make forms
+- Flask-Login - Used to manage user login functionality
+- MongoDB - Used to communicate with the database
+- Requests - Used to communicate with external API
+- Axios - Used to communicate with external API from JavaScript
+- Ninja2 - Used as template engine 
+- Bootstrap - Used to style the website
+
 # Testing
 # Deployment
 # Credits
