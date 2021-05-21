@@ -213,9 +213,10 @@ The error page consist of a standard text and a 'go back' button, which leads to
 - Python - used to setup the flask application as well communication with database and api
 - JavaScript - used for different purposes as communication with the flask app and frontend validations
 
-### programs
+### Programs
 
 - VS code - IDE used to build the project
+- Balsamiq - Used to make mockups for the project
 - Github - Used for source control and to make pull requests
 - Git - Used to make branches for different assets and commits 
 - Outklip - Used to make gif files to document testing
