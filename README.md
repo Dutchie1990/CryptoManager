@@ -2,8 +2,8 @@
 
 Access to the project: 
 
-LIVE: Click [here]() to access the live website. <br>
-REPO: Click [here]() to access the Github repository.
+LIVE: Click [here](https://crypto-investment-monitor.herokuapp.com/) to access the live website. <br>
+REPO: Click [here](https://github.com/Dutchie1990/CryptoManager) to access the Github repository.
 
 # Table of Contents
 - Project Goal
@@ -237,6 +237,9 @@ The error page consist of a standard text and a 'go back' button, which leads to
 - Bootstrap - Used to style the website
 
 # Testing
+
+Please see the TESTING.md
+
 # Deployment
 # Credits
 
