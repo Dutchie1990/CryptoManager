@@ -37,7 +37,6 @@ The platform is divided in several epics with their own features and user storie
 ### Homescreen
 
 - As a new visitor I want to be able to navigate to the register page, so I can make a profile
-- As a visitor I want to be able to navigate to the leaderboard, so I can see the most successfull portfolio's to learn from them
 - As a returning visitor I want to be able to navigate to the login page, so I can access my profile
 
 ### Login/Register

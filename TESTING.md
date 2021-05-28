@@ -13,16 +13,29 @@
 - [Further Manual Testing](#Further-Manual-Testing)
 
 # Epic Testing
+
+## Homescreen
+
+#### User stories
+
+- As a new visitor I want to be able to navigate to the register page, so I can make a profile - <strong>Passed</strong>
+- As a returning visitor I want to be able to navigate to the login page, so I can access my profile - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\homescreen.png">
+
+#### Found issues
+
+BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
+
+
 ## Login/Register
 
 #### User stories
 
-- As a new visitor I want to be able to navigate to the register page, so I can make a profile
-- As a visitor I want to be able to navigate to the leaderboard, so I can see the most successfull portfolio's to learn from them
-- As a returning visitor I want to be able to navigate to the login page, so I can access my profile
 - As a new visitor, I want to be able to register in order to make an own profile
 - As a returning visitor, I want to be able to log in order to access my profile
 - As a logged in user, I want to be able to log out in order to exit my profile
+
 
 ## Assets
 
@@ -45,9 +58,7 @@
 #### User stories
 
 - As a user, I want to be able to see the best portfolio's based on profit and loss, in order to make investment decisions
-- As a logged in User, I want to be able to see my own performance in order to compare my portfolio with the best performing portfolio's
-
-#### User stories
+- As a logged in user, I want to be able to see my own performance in order to compare my portfolio with the best performing portfolio's
 
 ## Error page
 # Validators
