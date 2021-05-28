@@ -27,15 +27,27 @@
 
 BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
 
-
 ## Login/Register
 
 #### User stories
 
 - As a new visitor, I want to be able to register in order to make an own profile
+
+<img src="cryptomanager\app\static\img\testing\register.gif">
+
 - As a returning visitor, I want to be able to log in order to access my profile
+
+<img src="cryptomanager\app\static\img\testing\login.gif">
+
 - As a logged in user, I want to be able to log out in order to exit my profile
 
+<img src="cryptomanager\app\static\img\testing\logout.gif">
+
+#### Found issues
+
+BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen
+BUG3: Emailfield in register and in login is case sensitive
+BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field
 
 ## Assets
 
