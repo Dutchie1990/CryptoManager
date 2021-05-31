@@ -73,19 +73,37 @@
 - Database transactions - <strong>Passed</strong>
 - Frontend field validations - <strong>Passed</strong>
 - Backend field validations - <strong>Passed</strong>
+
 #### Found issues
 
 1. BUG5: Current value field is not updated when making deposit or withdrawal
-
-## Assets
 
 ## Transactions
 
 #### User stories
 
 - As a logged in user, I want to be able to register my transaction to register my investments activities
+
+<img src="cryptomanager\app\static\img\testing\add-transaction.gif">
+
 - As a logged in user, I want to be able to adjust the prices of my transactions in case I want to register an old transactions to get a real overview of my investment activities
+
+<img src="cryptomanager\app\static\img\testing\adjust-transaction-prize.gif">
+
 - As a logged in user, I want to be able to make sell and buy transaction against different crypto's or USD in order to register my investment activities
+
+<img src="cryptomanager\app\static\img\testing\transaction-screen.png">
+
+#### Further testing
+- Database transactions - <strong>Passed</strong>
+- Frontend field validations - <strong>Passed</strong>
+- Backend field validations - <strong>Passed</strong>
+
+#### Found issues
+
+1. BUG6: When the user adjust the price and the VS currency is USD, the submit button won't be updated to available
+2. BUG7: The transaction time should be trimmed to yyyy/mm/dd hr:min format
+3. BUG8: The transaction time is not current server time
 
 ## Leaderboard
 
