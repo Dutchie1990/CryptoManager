@@ -109,8 +109,15 @@
 
 #### User stories
 
-- As a user, I want to be able to see the best portfolio's based on profit and loss, in order to make investment decisions
-- As a logged in user, I want to be able to see my own performance in order to compare my portfolio with the best performing portfolio's
+- As a user, I want to be able to see the best portfolio's based on profit and loss, in order to make investment decisions - <strong>Passed</strong>
+- As a logged in user, I want to be able to see my own performance in order to compare my portfolio with the best performing portfolio's - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\leaderboard-screen.png">
+
+#### Found issues
+
+1. BUG9: When a user doesn't have any USD asset a exception is thrown
+2. BUG10: The leaderboard is not limited to the best 10 portfolio's
 
 ## Error page
 # Validators
