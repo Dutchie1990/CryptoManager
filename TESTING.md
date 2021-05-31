@@ -25,37 +25,59 @@
 
 #### Found issues
 
-BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
+1. BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
 
 ## Login/Register
 
 #### User stories
 
-- As a new visitor, I want to be able to register in order to make an own profile
+- As a new visitor, I want to be able to register in order to make an own profile - <strong>Passed</strong>
 
 <img src="cryptomanager\app\static\img\testing\register.gif">
 
-- As a returning visitor, I want to be able to log in order to access my profile
+- As a returning visitor, I want to be able to log in order to access my profile - <strong>Passed</strong>
 
 <img src="cryptomanager\app\static\img\testing\login.gif">
 
-- As a logged in user, I want to be able to log out in order to exit my profile
+- As a logged in user, I want to be able to log out in order to exit my profile - <strong>Passed</strong>
 
 <img src="cryptomanager\app\static\img\testing\logout.gif">
 
+#### Further testing
+ - Frontend field validations - <strong>Passed</strong>
+ - Backend field validations - <strong>Passed</strong>
+
 #### Found issues
 
-BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen
-BUG3: Emailfield in register and in login is case sensitive
-BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field
+1. BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen
+2. BUG3: Emailfield in register and in login is case sensitive
+3. BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field
 
 ## Assets
 
 #### User stories
 
-- As a logged in user, I want to be able to make a deposit in order to imitate my real investments 
-- As a logged in user, I want to be able to make a withdrawal in order to imitate my real investments
-- As a logged in user, I want to be able to see how my assets perform to make real-time investments decisions
+- As a logged in user, I want to be able to make a deposit in order to imitate my real investments - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\deposit.gif">
+
+- As a logged in user, I want to be able to make a withdrawal in order to imitate my real investments - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\withdrawal.gif">
+
+- As a logged in user, I want to be able to see how my assets perform to make real-time investments decisions - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\asset-screen.png">
+
+#### Further testing
+- Database transactions - <strong>Passed</strong>
+- Frontend field validations - <strong>Passed</strong>
+- Backend field validations - <strong>Passed</strong>
+#### Found issues
+
+1. BUG5: Current value field is not updated when making deposit or withdrawal
+
+## Assets
 
 ## Transactions
 
