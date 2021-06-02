@@ -50,7 +50,7 @@
 #### Found issues
 
 1. BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen - <strong>Fixed</strong>
-2. BUG3: Emailfield in register and in login is case sensitive 
+2. BUG3: Emailfield in register and in login is case sensitive - <strong>Fixed</strong>
 3. BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field
 
 ## Assets

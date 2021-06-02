@@ -11,8 +11,8 @@ class RegistrationForm(FlaskForm):
                             validators=[
                                 InputRequired("Input is required!"),
                                 DataRequired("Data is required!"),
-                                Length(min=5, max=20,
-                                       message='''Firstname must be between 5
+                                Length(min=2, max=20,
+                                       message='''Firstname must be between 2
                                                 and 20 characters long''')
                                 ])
     email = StringField(("Email"),

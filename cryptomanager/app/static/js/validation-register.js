@@ -34,7 +34,7 @@ function validate() {
     let firstname_valid;
 
     if(hasValue(firstname_el)){
-        if(hasValue(firstname_el, 3)){
+        if(hasValue(firstname_el, 2)){
             firstname_valid = true;
             firstname_el.classList.remove("is-invalid");
             firstname_el.classList.add("is-valid");
