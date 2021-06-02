@@ -1,5 +1,4 @@
 astroid==2.5.3
-autopep8 @ file:///tmp/build/80754af9/autopep8_1615918855173/work
 Babel==2.9.1
 certifi==2020.12.5
 chardet==4.0.0
@@ -19,7 +18,6 @@ lazy-object-proxy==1.6.0
 MarkupSafe==1.1.1
 mccabe==0.6.1
 mongoengine==0.23.0
-pycodestyle @ file:///tmp/build/80754af9/pycodestyle_1615748559966/work
 pylint==2.7.4
 pymongo==3.11.3
 pytz==2021.1
