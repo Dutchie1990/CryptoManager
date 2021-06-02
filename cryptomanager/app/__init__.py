@@ -58,3 +58,7 @@ def trim(value):
 @app.template_filter("image")
 def image(value):
     return "/static/img/symbols/{}.png".format(value.lower())
+
+@app.errorhandler(Exception)
+def server_error(err):
+    return render_template("error.html")
