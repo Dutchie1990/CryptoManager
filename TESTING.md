@@ -102,8 +102,8 @@
 #### Found issues
 
 1. BUG6: When the user adjust the price and the VS currency is USD, the submit button won't be updated to available - <strong>Fixed</strong>
-2. BUG7: The transaction time should be trimmed to yyyy/mm/dd hr:min format
-3. BUG8: The transaction time is not current server time
+2. BUG7: The transaction time should be trimmed to yyyy/mm/dd hr:min format - <strong>Fixed</strong>
+3. BUG8: The transaction time is not current server time - <strong>Fixed</strong>
 
 ## Leaderboard
 

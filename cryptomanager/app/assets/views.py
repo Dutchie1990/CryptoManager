@@ -5,6 +5,7 @@ from ..models import Assets, User, Transactions
 from ...app import api
 import copy
 import json
+import datetime
 
 assets = Blueprint('assets', __name__, template_folder="templates")
 
@@ -56,6 +57,7 @@ def get_asset():
             Assets.objects(userid=g.user.id, asset_name='USD').update_one(
                             set__amount=withdrawable_balance, upsert=True)
         transaction = Transactions(userid=g.user.id,
+                                   date=datetime.datetime.now(),
                                    ordertype=transaction_type, volume=amount)
         transaction.save()
 

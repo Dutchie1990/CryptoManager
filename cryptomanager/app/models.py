@@ -73,16 +73,3 @@ class Transactions(db.Document):
     vs_currency = db.StringField()
     prize = db.FloatField()
     costs = db.FloatField()
-
-    def __init__(self, userid, ordertype, volume, date=datetime.datetime.now(),
-                 coin_symbol="", vs_currency="", prize=0.0,  costs=0.0, *args,
-                 **kwargs):
-        super(Transactions, self).__init__(*args, **kwargs)
-        self.userid = userid
-        self.date = date
-        self.ordertype = ordertype
-        self.coin_symbol = coin_symbol
-        self.vs_currency = vs_currency
-        self.prize = prize
-        self.volume = volume
-        self.costs = costs
