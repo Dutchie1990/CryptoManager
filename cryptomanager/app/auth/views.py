@@ -27,7 +27,7 @@ def register():
         user.save()
         flash(("You are registered"), "success")
         login_user(user)
-        return redirect(url_for('general.home'))
+        return redirect(url_for('assets.get_asset'))
 
     return render_template('register.html', form=form)
 

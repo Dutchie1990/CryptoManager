@@ -25,7 +25,7 @@
 
 #### Found issues
 
-1. BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
+1. BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen - <strong>Fixed</strong>
 
 ## Login/Register
 
