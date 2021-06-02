@@ -120,5 +120,10 @@
 2. BUG10: The leaderboard is not limited to the best 10 portfolio's
 
 ## Error page
+
+- The error page consist with a standard text. The user is able to navigate from the page with the navigation bar.
+
+<img src="cryptomanager\app\static\img\testing\error-screen.png">
+
 # Validators
 # Further Manual Testing

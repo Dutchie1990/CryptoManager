@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Error') }}{% endblock %}
+{% set active_page = 'home' %}
+
+{% block styles %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/login-register.css')}}" type="text/css">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="background"></div>
+<div class="text-center row">
+    <div class="form col-md-8 offset-md-2">
+    <h5 class="my-3">Something went wrong, excuses for the inconvience</h5>
+</div>
+</div>
+{% endblock %}
+
