@@ -20,7 +20,7 @@ def register():
 
     if form.validate_on_submit():
         firstname = form.firstname.data
-        email = form.email.data
+        email = form.email.data.lower()
         password = form.password.data
         user = User(firstname, email, password)
         user.set_password(password)
@@ -40,7 +40,7 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.objects.filter(email=form.email.data).first()
+        user = User.objects.filter(email=form.email.data.lower()).first()
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password", "error")
             return redirect(url_for('auth.login'))
