@@ -106,6 +106,7 @@ function getUsdPrize() {
 		let currency_out;
     if (vs_currency === "usd") {
         usd_prize_element.value = prize_element.value / volume_element.value;
+        submit_button.removeAttribute("disabled");
     } else {
         if (ordertype === "sell") {
             currency_out = supported_assets.filter(x => x.symbol == coin_symbol);
