@@ -46,8 +46,10 @@ def get_asset():
         amount = form.amount.data
         if transaction_type == 'deposit':
             withdrawable_balance = g.value
+            current_value += amount
         else:
             withdrawable_balance = g.value
+            current_value -= amount
         if withdrawable_balance == 0:
             Assets.objects(userid=g.user.id, asset_name='USD').delete()
         else:
