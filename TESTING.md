@@ -116,8 +116,8 @@
 
 #### Found issues
 
-1. BUG9: When a user doesn't have any USD asset a exception is thrown
-2. BUG10: The leaderboard is not limited to the best 10 portfolio's
+1. BUG9: When a user doesn't have any USD asset a exception is thrown - <strong>Fixed</strong>
+2. BUG10: The leaderboard is not limited to the best 10 portfolio's - <strong>Fixed</strong>
 
 ## Error page
 

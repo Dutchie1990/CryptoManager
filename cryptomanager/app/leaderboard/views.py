@@ -22,6 +22,7 @@ def get_leaderboard():
     assets_querystring = ",".join(getid_list(assets_names))
     prices = api.retrieve_current_prize('/simple/price', assets_querystring)
     for user in users:
+        usd_balance = 0
         list_assets = []
         updated_list_assets = []
         try:
@@ -47,7 +48,8 @@ def get_leaderboard():
     leaderboard_data.sort(key=sort_criteria, reverse=True)
 
     return render_template('leaderboard.html',
-                           leaderboard_data=leaderboard_data, user=this_user,
+                           leaderboard_data=leaderboard_data[:10],
+                           user=this_user,
                            counter=0)
 
 
