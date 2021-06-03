@@ -15,10 +15,6 @@ def get_leaderboard():
     users = User.objects().only('id', 'firstname')
     assets_names = [x.lower() for x in Assets.objects().distinct(
                                 field="asset_name") if x != "USD"]
-    getid_list = lambda assets: [x['id'] for x in
-                                 api.supported_coins if x['symbol'] in assets]
-    getid = lambda assets: [x['id'] for x in api.supported_coins if
-                            x['symbol'] == assets]
     assets_querystring = ",".join(getid_list(assets_names))
     prices = api.retrieve_current_prize('/simple/price', assets_querystring)
     for user in users:
@@ -37,7 +33,7 @@ def get_leaderboard():
         if usd_balance:
             list_assets.remove(usd_balance)
         for asset in list_assets:
-            asset.prize = (prices["".join(getid(asset.asset_name.lower()))]
+            asset.prize = (prices["".join(get_id(asset.asset_name.lower()))]
                            ['usd'])
         updated_list_assets = Assets.calculate_profits(list_assets)
         user_info = LeaderboardUser(user=user, assets=updated_list_assets,
@@ -77,3 +73,11 @@ class LeaderboardUser:
 
 def sort_criteria(e):
     return e.user.total_profit
+
+
+def getid_list(assets):
+    return [x['id'] for x in api.supported_coins if x['symbol'] in assets]
+
+
+def get_id(assets):
+    return [x['id'] for x in api.supported_coins if x['symbol'] == assets]
