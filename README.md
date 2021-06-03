@@ -242,9 +242,30 @@ Please see the TESTING.md
 # Deployment
 # Credits
 
+### Content
+All the content is written by me. The background image comes from the following website: https://designmodo.com/free-crypto-icons/
+
+### Acknowledgments
+Thanks to my tutors and my mentor Spencer for valueable tips and tricks and helping me throughout the project. I would also like to thank the community on Slack and StackOverflow for valuble input regarding the project.
 
 ### Used Websites
-https://dev.to/blankgodd/creating-a-blueprint-based-flask-app-199h
+- https://coolors.co/ 
+- https://www.rgbtohex.net/hextorgb/
+- https://docs.mongodb.com/guides/
+- http://mongoengine.org/
+- https://flask.palletsprojects.com/en/2.0.x/
+- https://app.pluralsight.com/ (Structuring a Growing Flask Application)
+- https://docs.python.org/3/library/index.html
+- https://www.coingecko.com/en/api
+- https://flask-wtf.readthedocs.io/en/0.15.x/
+- https://getbootstrap.com/docs/4.3/getting-started/introduction/
+- https://stackoverflow.com/
+
+NOTE: 
+
+Thanks for reading my ReadMe.md, I hope you will beat me in the leaderboard! 
+-- Succes with your investments. -- 
+
 
 
 
