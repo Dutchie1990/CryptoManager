@@ -3,30 +3,30 @@ var email_el = form_elements.find(element => element['id'] === "email");
 var password_el = form_elements.find(element => element['id'] === "password");
 
 var submit_button = document.getElementById('submit-button');
-var clear_button = document.getElementById('clear-button')
+var clear_button = document.getElementById('clear-button');
 
 window.onload = function (){
     clear_button.addEventListener('click', (event) => {
-        event.preventDefault()
-        submit_button.setAttribute("disabled", true)
-        clear_button.setAttribute("disabled", true)
+        event.preventDefault();
+        submit_button.setAttribute("disabled", true);
+        clear_button.setAttribute("disabled", true);
         form_elements.slice(1, form_elements.length).forEach(element => {
-            element.value = ""
-            element.classList.remove('is-valid')
-            element.classList.remove('is-invalid')
-        })
-    })
+            element.value = "";
+            element.classList.remove('is-valid');
+            element.classList.remove('is-invalid');
+        });
+    });
 
     form_elements.forEach(element => element.addEventListener('change', function () {
-        validate()
+        validate();
         if (hasValue(email_el) || hasValue(password_el)) {
-            clear_button.removeAttribute("disabled")
+            clear_button.removeAttribute("disabled");
         } else {
-            clear_button.setAttribute("disabled", true)
+            clear_button.setAttribute("disabled", true);
         }
-    }))
-    setElementListener()
-}
+    }));
+    setElementListener();
+};
 
 function validate(){
     let email_valid, password_valid;
@@ -57,13 +57,13 @@ function validate(){
 
     if (email_valid && password_valid) {
         if (submit_button.getAttribute("disabled") === "" || submit_button.getAttribute("disabled") === "true") {
-            submit_button.removeAttribute("disabled")
+            submit_button.removeAttribute("disabled");
         }
     } else {
-        submit_button.setAttribute("disabled", true)
+        submit_button.setAttribute("disabled", true);
     }
 }
 
 function hasValue(element, val = 0) {
-    return (element.value.length > val) ? true : false
+    return (element.value.length > val) ? true : false;
 }

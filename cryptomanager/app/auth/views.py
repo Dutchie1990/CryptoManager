@@ -20,14 +20,14 @@ def register():
 
     if form.validate_on_submit():
         firstname = form.firstname.data
-        email = form.email.data
+        email = form.email.data.lower()
         password = form.password.data
         user = User(firstname, email, password)
         user.set_password(password)
         user.save()
         flash(("You are registered"), "success")
         login_user(user)
-        return redirect(url_for('general.home'))
+        return redirect(url_for('assets.get_asset'))
 
     return render_template('register.html', form=form)
 
@@ -40,7 +40,7 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.objects.filter(email=form.email.data).first()
+        user = User.objects.filter(email=form.email.data.lower()).first()
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password", "error")
             return redirect(url_for('auth.login'))

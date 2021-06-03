@@ -32,7 +32,7 @@
                 {% for transaction in transactions %}
                     {% if transaction.ordertype == 'deposit' or transaction.ordertype == 'withdrawal'%}
                         <tr>
-                            <td scope="row">{{ transaction.date }}</td>
+                            <td scope="row">{{ transaction.date | date}}</td>
                             <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
                             <td>-</td>
                             <td class="d-none d-sm-block">-</td>
@@ -41,7 +41,7 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td scope="row">{{ transaction.date }}</td>
+                            <td scope="row">{{ transaction.date | date }}</td>
                             <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
                             <td>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</td>
                             <td class="d-none d-sm-block">{{ transaction.prize }} <strong>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</strong></td>
