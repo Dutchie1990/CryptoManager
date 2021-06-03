@@ -42,7 +42,7 @@ class RegistrationForm(FlaskForm):
 
     @staticmethod
     def validate_email(form, field):
-        user = User.objects(email=field.data)
+        user = User.objects(email=field.data.lower())
         if user:
             raise ValidationError("Email already exists.")
 
