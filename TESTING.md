@@ -10,7 +10,6 @@
     - [Leaderboard](#Leaderboard)
     - [Error page](#Errorpage)
 - [Validators](#Validators)
-- [Further Manual Testing](#Further-Manual-Testing)
 
 # Epic Testing
 
@@ -126,4 +125,14 @@
 <img src="cryptomanager\app\static\img\testing\error-screen.png">
 
 # Validators
-# Further Manual Testing
+
+## JS validator
+For the validation of my JavaScript code I used JSHint. All the JavaScript files are conform to existing standards
+
+## Python PEP8
+I have tried to be as much as PEP8 compliant as possible. The only issues are found in the main __init__.py file.
+- missing whitespace around modulo operator pycodestyle(E402)
+- module level import not at top of file pycodestyle(E228)
+
+Trying to resolve these issues will lead to bugs such as circular imports and the formatting filter will break as well. Therefore I decided to ignore those 2 issues. 
+
