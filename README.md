@@ -201,7 +201,7 @@ The error handling is part of defensive programming. In order to prevent the app
 #### Features 
 - Presentation general
 
-The error page consist of a standard text and a 'go back' button, which leads to the homepage again.
+The error page consist with a standard text. The user is able to navigate from the page with the navigation bar.
 
 # Technologies & Tools
 
