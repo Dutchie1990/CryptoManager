@@ -20,21 +20,22 @@ class API():
         response.raise_for_status()
 
         supported_images = [''.join(val.split())[
-                :-4] for val in os.listdir("cryptomanager/app/static/img/symbols")]
+                :-4] for val in
+                os.listdir("cryptomanager/app/static/img/symbols")]
 
         # get only 1 id for 1 symbol
         uniqueSymbol = []
-        for item in response.json(): 
+        for item in response.json():
             if(item["symbol"] not in uniqueSymbol):
                 uniqueSymbol.append(item["symbol"])
                 if item['symbol'] in supported_images:
-                    cls.supported_coins.append({'symbol':item['symbol'], 'id':item['id'], 'name':item['name']})
+                    cls.supported_coins.append(
+                        {'symbol': item['symbol'],
+                            'id': item['id'], 'name': item['name']})
 
-            
-    
     @classmethod
     def retrieve_vs_currencies(cls, rel_url):
-        url = cls.BASE_URL + rel_url 
+        url = cls.BASE_URL + rel_url
 
         response = requests.get(url)
 
@@ -42,12 +43,12 @@ class API():
         response.raise_for_status()
 
         supported_images = [''.join(val.split())[
-                :-4] for val in os.listdir("cryptomanager/app/static/img/symbols")]
+                :-4] for val in
+                    os.listdir("cryptomanager/app/static/img/symbols")]
 
-        for item in response.json():   
+        for item in response.json():
             if item in supported_images:
                 cls.supported_vs_currency.append(item)
-
 
     def retrieve_current_prizes(self, rel_url, list_assets):
         for asset in list_assets:
@@ -64,7 +65,7 @@ class API():
             asset.prize = x[asset.id]['usd']
 
         return list_assets
-    
+
     def retrieve_current_prize(self, rel_url, querystring):
         url = self.BASE_URL + rel_url
         payload = {'ids': querystring, 'vs_currencies': "usd"}

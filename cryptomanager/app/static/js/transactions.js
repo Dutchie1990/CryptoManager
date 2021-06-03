@@ -8,4 +8,4 @@ document.addEventListener('DOMContentLoaded', function (event) {
         "pagingType": "numbers",
         "info": false,
     });
-})
+});
