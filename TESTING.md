@@ -10,7 +10,6 @@
     - [Leaderboard](#Leaderboard)
     - [Error page](#Errorpage)
 - [Validators](#Validators)
-- [Further Manual Testing](#Further-Manual-Testing)
 
 # Epic Testing
 
@@ -25,7 +24,7 @@
 
 #### Found issues
 
-1. BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen
+1. BUG1: If a user is logged in, he is not directed to the assets page if he directly try to open the homescreen - <strong>Fixed</strong>
 
 ## Login/Register
 
@@ -49,9 +48,9 @@
 
 #### Found issues
 
-1. BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen
-2. BUG3: Emailfield in register and in login is case sensitive
-3. BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field
+1. BUG2: If the user is registered, he is redirected to the homescreen instead of assets screen - <strong>Fixed</strong>
+2. BUG3: Emailfield in register and in login is case sensitive - <strong>Fixed</strong>
+3. BUG4: Frontend validation of firstname field is not the same as backend validation of the firstname field - <strong>Fixed</strong>
 
 ## Assets
 
@@ -76,7 +75,7 @@
 
 #### Found issues
 
-1. BUG5: Current value field is not updated when making deposit or withdrawal
+1. BUG5: Current value field is not updated when making deposit or withdrawal - <strong>Fixed</strong>
 
 ## Transactions
 
@@ -101,9 +100,9 @@
 
 #### Found issues
 
-1. BUG6: When the user adjust the price and the VS currency is USD, the submit button won't be updated to available
-2. BUG7: The transaction time should be trimmed to yyyy/mm/dd hr:min format
-3. BUG8: The transaction time is not current server time
+1. BUG6: When the user adjust the price and the VS currency is USD, the submit button won't be updated to available - <strong>Fixed</strong>
+2. BUG7: The transaction time should be trimmed to yyyy/mm/dd hr:min format - <strong>Fixed</strong>
+3. BUG8: The transaction time is not current server time - <strong>Fixed</strong>
 
 ## Leaderboard
 
@@ -116,8 +115,8 @@
 
 #### Found issues
 
-1. BUG9: When a user doesn't have any USD asset a exception is thrown
-2. BUG10: The leaderboard is not limited to the best 10 portfolio's
+1. BUG9: When a user doesn't have any USD asset a exception is thrown - <strong>Fixed</strong>
+2. BUG10: The leaderboard is not limited to the best 10 portfolio's - <strong>Fixed</strong>
 
 ## Error page
 
@@ -126,4 +125,14 @@
 <img src="cryptomanager\app\static\img\testing\error-screen.png">
 
 # Validators
-# Further Manual Testing
+
+## JS validator
+For the validation of my JavaScript code I used JSHint. All the JavaScript files are conform to existing standards
+
+## Python PEP8
+I have tried to be as much as PEP8 compliant as possible. The only issues are found in the main __init__.py file.
+- missing whitespace around modulo operator pycodestyle(E402)
+- module level import not at top of file pycodestyle(E228)
+
+Trying to resolve these issues will lead to bugs such as circular imports and the formatting filter will break as well. Therefore I decided to ignore those 2 issues. 
+

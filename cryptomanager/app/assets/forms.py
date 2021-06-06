@@ -17,7 +17,8 @@ class DepositForm(FlaskForm):
     @staticmethod
     def validate_amount(form, field):
         try:
-            available_asset = Assets.objects.get(userid=g.user.id, asset_name='USD')
+            available_asset = Assets.objects.get(userid=g.user.id,
+                                                 asset_name='USD')
         except Assets.DoesNotExist:
             if (form.transaction_type.data == 'withdrawal'):
                 flash("Insufficient funds to withdraw", "error")
@@ -30,7 +31,8 @@ class DepositForm(FlaskForm):
                 flash("Insufficient funds to withdraw", "error")
                 raise ValidationError()
             g.value = available_asset.amount - field.data
-            flash("{} is withdrawn from your deposit".format(field.data), "success")
+            flash("{} is withdrawn from your deposit".format(field.data),
+                  "success")
             return
         g.value = available_asset.amount + field.data
         flash("{} is added to your deposit".format(field.data), "success")
