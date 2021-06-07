@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Extension for implementing Flask-Login for authentication
 from flask_login import UserMixin
 from mongoengine import (StringField, EmailField,
-                         FloatField, ReferenceField, DateTimeField)
+                         FloatField, ReferenceField, DateTimeField, CASCADE)
 # Imports for database usage and login manager from app
 from ..app import db, login_manager
 # Import datetime to calculate today's date
@@ -40,7 +40,7 @@ def load_user(user_id):
 
 
 class Assets(db.Document):
-    userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
+    userid = db.ReferenceField(User, reverse_delete_rule=CASCADE)
     asset_name = db.StringField(required=True)
     amount = db.FloatField(required=True)
     costs = db.FloatField(required=True)
@@ -65,7 +65,7 @@ class Assets(db.Document):
 
 
 class Transactions(db.Document):
-    userid = db.ReferenceField(User, reverse_delete_rule="CASCADE")
+    userid = db.ReferenceField(User, reverse_delete_rule=CASCADE)
     date = db.DateTimeField(required=True)
     ordertype = db.StringField(required=True)
     volume = db.FloatField(required=True)
