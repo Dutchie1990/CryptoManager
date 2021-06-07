@@ -2,6 +2,12 @@
     overflow: visible !important;
 }
 
+.jumbotron{
+    background-color: #F4FAFF !important;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
 #table_wrapper{
     margin-bottom: 2rem;
 }

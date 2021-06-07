@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block heading %}{{ ('Transactions') }}{% endblock %}
+{% set active_page = 'transactions' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets-transactions.css')}}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h5>Transactions overview</h5>
+    <a class="btn btn-lg btn-success mt-5"href="{{ url_for('transactions.add_transaction') }}">Add transaction</a>
+</div>
+
+<div class="justify-content-center">
+<div class="table-responsive col-md-12">
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="Date" data-sortable="true" scope="col">Date</th>
+                <th data-field="Ordertype" data-sortable="true" scope="col">Ordertype</th>
+                <th data-field="Pair" scope="col">Pair</th>
+                <th class="d-none d-sm-block" data-field="Price" scope="col">Rate</th>
+                <th data-field="Volume" scope="col">Volume</th>
+                <th data-field="Cost" scope="col">Costs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if transactions %}
+                {% for transaction in transactions %}
+                    {% if transaction.ordertype == 'deposit' or transaction.ordertype == 'withdrawal'%}
+                        <tr>
+                            <td scope="row">{{ transaction.date | date}}</td>
+                            <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
+                            <td>-</td>
+                            <td class="d-none d-sm-block">-</td>
+                            <td>{{transaction.volume}}</td>
+                            <td>-</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td scope="row">{{ transaction.date | date }}</td>
+                            <td class="{{ transaction.ordertype }}">{{ transaction.ordertype | capitalize}}</td>
+                            <td>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</td>
+                            <td class="d-none d-sm-block">{{ transaction.prize }} <strong>{{ transaction.coin_symbol }}/{{ transaction.vs_currency }}</strong></td>
+                            <td>{{transaction.volume}}</td>
+                            <td>{{ transaction.costs }} {{ transaction.vs_currency }} </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/transactions.js')}}"></script>
+{% endblock %}

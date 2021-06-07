@@ -17,5 +17,3 @@ if (!flash_element){
          flash_element.style.opacity -= 0.05
      }, 200);
  }
-
- //use package for animation

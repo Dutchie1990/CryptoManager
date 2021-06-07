@@ -1,0 +1,29 @@
+.jumbotron{
+    background-color: #F4FAFF !important;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
+.symbol-label{
+    margin-right: 2rem;
+}
+
+.form{   
+    border-radius: 15px;
+    background-color: #F4FAFF;
+    padding: 1.5rem;
+}
+
+.bootstrap-select>.dropdown-toggle {
+    width: 80% !important;
+}
+
+.bootstrap-select .dropdown-menu {
+    min-width: 80% !important;
+    width: 80% !important;
+}
+
+.overflow{
+    overflow: visible !important;
+}
+
