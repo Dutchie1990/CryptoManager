@@ -6,7 +6,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from ...app import app, db
 from ..models import User
 
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ManageForm, DeleteForm
 
 auth = Blueprint("auth", __name__, template_folder="templates")
 
@@ -57,3 +57,35 @@ def logout():
     logout_user()
     flash("You have been logged out", "error")
     return redirect(url_for("general.home"))
+
+
+@auth.route("/manage", methods=["GET", "POST"])
+@login_required
+def manage():
+    user_email = {'email': current_user.email}
+    form_update = ManageForm(data=user_email)
+    form_delete = DeleteForm()
+
+    if form_update.new_password.data and form_update.validate_on_submit():
+        user = User.objects.filter(
+                                email=form_update.email.data.lower()).first()
+        if user is None or not user.check_password(
+                                            form_update.old_password.data):
+            flash("Your old password is not correct", "error")
+            return redirect(url_for('auth.manage'))
+        hashed_password = user.set_password(form_update.new_password.data)
+        user.save()
+        flash("Your succesfully changed your password", "success")
+    if form_delete.validate_on_submit():
+        user = User.objects.filter(
+                                email=current_user.email).first()
+        if user is None or not user.check_password(
+                                            form_delete.delete_password.data):
+            flash("Your old password is not correct", "error")
+            return redirect(url_for('auth.manage'))
+        user.delete()
+        flash("Your succesfully deleted your account", "success")
+        return redirect(url_for('general.home'))
+    return render_template("manage.html",
+                           form_update=form_update,
+                           form_delete=form_delete)
