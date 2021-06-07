@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
         "pagingType": "numbers",
         "info": false,
     });
+    $('#depositModal').on('hide.bs.modal', function (e) {
+        input_el.classList.remove('is-valid');
+        input_el.classList.remove('is-invalid');
+      })
     var table_el = document.getElementById("table_wrapper");
     var input_el = document.getElementById('amount');
     var clear_button = document.getElementById('clear-button');
