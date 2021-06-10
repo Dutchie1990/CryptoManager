@@ -11,6 +11,22 @@ import datetime
 
 
 class User(UserMixin, db.Document):
+    """User class
+
+    Attributes:
+        :firstname: The firstname of the user
+        :email: The email of the user
+        :password: The password of the user
+
+    Methods:
+        :check_password:
+            param: password
+        Method to check the password hash
+        :set_password:
+            param: password
+        Method to generate password hash
+    """
+
     firstname = db.StringField(required=True)
     email = db.StringField(required=True)
     password = db.StringField(required=True)
@@ -30,6 +46,11 @@ class User(UserMixin, db.Document):
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+        :load_user
+            param: user_id
+        Method to find the user based on user_id
+    """
     try:
         return User.objects.get(id=user_id)
     except User.DoesNotExist:
@@ -40,6 +61,22 @@ def load_user(user_id):
 
 
 class Assets(db.Document):
+    """Assets class
+
+    Attributes:
+        :userid: Reference to the user
+        :asset_name: The name of the asset
+        :amount: The amount of the owned asset
+        :costs: The avarage costs of the assets in USD
+    Methods:
+        :calculate_profits:
+            param: list of assets
+        Method to calculate the asset profit or loss in percent
+        :calculate_current_value:
+            param: list of assets
+        Method to calculate the current value of the assets
+    """
+
     userid = db.ReferenceField(User, reverse_delete_rule=CASCADE)
     asset_name = db.StringField(required=True)
     amount = db.FloatField(required=True)
@@ -65,6 +102,21 @@ class Assets(db.Document):
 
 
 class Transactions(db.Document):
+    """Transactions class
+
+    Attributes:
+        :userid: Reference to the user
+        :date: The date of the transaction
+        :ordertype: The type of order (deposit, withdrawal, sell or buy)
+        :volume: The amount of the order
+        :coin_symbol: The coin which is bought or sold
+        :vs_currency: The currency which is used for the  transaction
+        :price: The price which is payed or obtained with the order,
+            depending on the ordertype
+        :costs: The costs which is payed or obtained with the order,
+            depending on the ordertype
+    """
+
     userid = db.ReferenceField(User, reverse_delete_rule=CASCADE)
     date = db.DateTimeField(required=True)
     ordertype = db.StringField(required=True)

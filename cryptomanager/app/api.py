@@ -3,6 +3,31 @@ import os
 
 
 class API():
+    """ API class
+
+    Attributes:
+        :BASE_URL: The base url of the API
+        :supported_coins: The crypto's which are supported by the application
+        :supported_vs_currency: The currencies which can be used
+                                to trade against
+    Methods:
+        retrieve_symbols:
+            param: rel_url
+        Method to get all the coins supported by the API
+
+        retrieve_vs_currencies:
+            param: rel_url
+        Method to get all the VS currencies supported by the API
+
+        retrieve_current_prizes:
+            param: rel_url, list_assets
+        Method to get the current prices of the list of assets
+
+        retrieve_current_prize:
+            param: rel_url, asset
+        Method to get the current price of one asset
+
+    """
     BASE_URL = 'http://api.coingecko.com/api/v3'
     supported_coins = []
     supported_vs_currency = []
@@ -19,6 +44,7 @@ class API():
         # Throw an exception on HTTP errors (404, 500, etc).
         response.raise_for_status()
 
+        # Filter based on the images supported by the application
         supported_images = [''.join(val.split())[
                 :-4] for val in
                 os.listdir("cryptomanager/app/static/img/symbols")]
@@ -45,6 +71,8 @@ class API():
         supported_images = [''.join(val.split())[
                 :-4] for val in
                     os.listdir("cryptomanager/app/static/img/symbols")]
+
+        # Filter based on the images supported by the application
 
         for item in response.json():
             if item in supported_images:

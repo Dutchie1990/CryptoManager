@@ -3,9 +3,8 @@ from flask import Blueprint, render_template, flash, abort, url_for, redirect
 # Extension for implementing Flask-Login for authentication
 from flask_login import current_user, login_required, login_user, logout_user
 # Imports from the app package
-from ...app import app, db
 from ..models import User
-
+# Import the forms
 from .forms import RegistrationForm, LoginForm, ManageForm, DeleteForm
 
 auth = Blueprint("auth", __name__, template_folder="templates")

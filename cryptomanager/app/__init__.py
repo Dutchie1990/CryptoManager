@@ -23,17 +23,22 @@ app.config.from_mapping(
     }
 )
 
+# Set up database
 db = MongoEngine(app)
+
+# Setup login manager
 login_manager = LoginManager(app)
 login_manager.login_view = "auth.login"
 login_manager.session_protection = "strong"
 login_manager.login_message = ("You need to be logged in to access this page.")
 login_manager.login_message_category = "error"
 
+# Setup API
 api = API()
 api.retrieve_symbols("/coins/list")
 api.retrieve_vs_currencies("/simple/supported_vs_currencies")
 
+# Register blueprints
 from .auth.views import auth
 app.register_blueprint(auth)
 
@@ -50,6 +55,7 @@ from .leaderboard.views import leaderboard
 app.register_blueprint(leaderboard)
 
 
+# Register template filters
 @app.template_filter("capitalized")
 def capitalize(value):
     return value.capitalize()
@@ -71,6 +77,7 @@ def format_datetime(value):
     return babel.dates.format_datetime(value, format)
 
 
+# Register exception handler
 @app.errorhandler(Exception)
 def server_error(err):
     return render_template("error.html")

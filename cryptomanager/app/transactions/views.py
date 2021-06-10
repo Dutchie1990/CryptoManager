@@ -1,8 +1,14 @@
+# Import functionalities from FLASK
 from flask import Blueprint, render_template, redirect, url_for, flash, g
+# Import functionalities from FLASK Login
 from flask_login import login_required, current_user
+# Import database models
 from ..models import Transactions, Assets
+# Import forms
 from .forms import TransactionForm
+# Import datetime to handle dates
 import datetime
+# Import the api to make calls
 from ...app import api
 
 
@@ -17,6 +23,7 @@ def get_transactions():
         flash("You need to be logged in for this functionality", "error")
     transactions = []
 
+    # Get transactions
     try:
         db_transactions = Transactions.objects.filter(userid=current_user.id)
         for transaction in db_transactions:
@@ -105,6 +112,10 @@ def add_transaction():
 
 
 def get_currencies():
+    """
+        param: none
+        Method to filter the fiat currencies out of vs_currencies except USD
+    """
     exclude_fiat = ["aed", "ars", "aud", "bdt", "bmd",  "bhd", "brl", "cad",
                     "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "hkd",
                     "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr",

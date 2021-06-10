@@ -1,12 +1,28 @@
 # Extension for implementing WTForms for managing web forms
 from flask_wtf import FlaskForm
+# Import functionalities from WTForms
 from wtforms.fields import StringField, SubmitField, PasswordField
 from wtforms.validators import (InputRequired, DataRequired,
                                 Length, ValidationError, Email, EqualTo)
+# Import database model
 from ..models import User
 
 
 class RegistrationForm(FlaskForm):
+    """Class RegistrationForm
+
+    Attributes:
+        firstname: User's firstname
+        email: User's email
+        password: User's password
+        password_confirm: Check to confirm password
+
+    Methods:
+        validate_email:
+            param: email field
+        Method to check if the user already exist in the database
+    """
+
     firstname = StringField(("Firstname"),
                             validators=[
                                 InputRequired("Input is required!"),
@@ -48,6 +64,13 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
+    """Class LoginForm
+
+    Attributes:
+        email: User's email
+        password: User's password
+    """
+
     email = StringField(("Email"),
                         validators=[
                                     InputRequired("Input is required!"),
@@ -69,6 +92,19 @@ class LoginForm(FlaskForm):
 
 
 class ManageForm(FlaskForm):
+    """Class ManageForm
+
+    Attributes:
+        email: User's email
+        old_password: User's old password
+        new_password: User's new password
+
+    Methods:
+        validate_old_password:
+            param: old password field
+        Method to check if the user chose another password
+    """
+
     email = StringField(("Email"),
                         validators=[
                                 Length(min=5, max=30,
@@ -96,6 +132,12 @@ class ManageForm(FlaskForm):
 
 
 class DeleteForm(FlaskForm):
+    """Class LoginForm
+
+    Attributes:
+        delete_password: User must enter correct password
+        in order to delete account
+    """
     delete_password = PasswordField(("Confirm password"),
                                     validators=[
                                     Length(min=5, max=40,

@@ -1,6 +1,10 @@
+# Import functionalities from FLASK
 from flask import Blueprint, render_template
+# Import functionalities from FLASK login
 from flask_login import current_user
+# Import datebase models
 from ..models import Assets, User
+# Import api to make api calls
 from ...app import api
 
 leaderboard = Blueprint('leaderboard', __name__, template_folder='templates')
@@ -12,11 +16,16 @@ def get_leaderboard():
     if current_user:
         this_user = current_user
     leaderboard_data = []
+
+    # Get all users
     users = User.objects().only('id', 'firstname')
+    # Get all assets owned by all users distinct
     assets_names = [x.lower() for x in Assets.objects().distinct(
                                 field="asset_name") if x != "USD"]
     assets_querystring = ",".join(getid_list(assets_names))
+    # Get the current prices
     prices = api.retrieve_current_prize('/simple/price', assets_querystring)
+
     for user in users:
         usd_balance = 0
         list_assets = []
@@ -38,8 +47,11 @@ def get_leaderboard():
         updated_list_assets = Assets.calculate_profits(list_assets)
         user_info = LeaderboardUser(user=user, assets=updated_list_assets,
                                     usd_balance=usd_balance)
+        # Get the percentage of the asset
         user_info.calculate_assets_percentage()
+        # Calculate total profit of user
         user_info.calculate_total_profit()
+        # Append to leaderboard data
         leaderboard_data.append(user_info)
     leaderboard_data.sort(key=sort_criteria, reverse=True)
 
@@ -50,6 +62,18 @@ def get_leaderboard():
 
 
 class LeaderboardUser:
+    """ API class
+
+    Methods:
+        def calculate_assets_percentage:
+            param: none
+        Method to calculate how much of the portfolio is a specific
+        asset in percentage
+
+        calculate_total_profit:
+            param: none
+        Method to calculate total profit per user
+    """
     def __init__(self, user, assets, usd_balance):
         self.user = user
         self.assets = assets
@@ -72,12 +96,25 @@ class LeaderboardUser:
 
 
 def sort_criteria(e):
+    """
+        param: leaderboard data
+        Helper to get the sorting key
+    """
     return e.user.total_profit
 
 
 def getid_list(assets):
+    """
+        param: list of asset
+        Helper to get the id of the coin in order to call the API
+    """
     return [x['id'] for x in api.supported_coins if x['symbol'] in assets]
 
 
 def get_id(assets):
+    """
+        param: asset
+        Helper to get the id of the coin in order to get specific
+        data from API response
+    """
     return [x['id'] for x in api.supported_coins if x['symbol'] == assets]
