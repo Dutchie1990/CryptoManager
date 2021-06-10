@@ -138,11 +138,15 @@ As a user is logged in the logout navigation link should be visible for the user
 
 - Register 
 
-If a user decide to make profile, he should fill in the register form, where he should register his firstname, emailaddress and password. To extra check the password, the user should repeat his newly chosen password. There are several frontend field validation such as firstname should be longer then 3 characters, email should include '@' and should be longer then 5 characters, password field should be longer the 5 characters and the confirm password field should be the same as the password field. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. In the backend there is also a validation if the emailaddress already exists, when the emailaddress is already in use the user is not able to make a new profile with the same emailaddress. When the user is succesfully registered, the user is automatically logged in and can work with his profile
+If a user decide to make profile, he should fill in the register form, where he should register his firstname, emailaddress and password. To extra check the password, the user should repeat his newly chosen password. There are several frontend field validation such as firstname should be longer then 3 characters, email should include '@' and should be longer then 5 characters, password field should be longer the 5 characters and the confirm password field should be the same as the password field. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. In the backend there is also a validation if the emailaddress already exists, when the emailaddress is already in use the user is not able to make a new profile with the same emailaddress. When the user is succesfully registered, the user is automatically logged in and can work with his profile.
 
 - Delete 
 
-Due to limited time this feature is not implemented. 
+This feature is implemented because I wanted the user to make a full CRUD action from the frontend. When the user delete his account, all underlying assets and transactions are also deleted
+
+- Adjust password
+
+This feature is implemented because I wanted the user to make a full CRUD action from the frontend. When the user change his password, this password should be used to login again.
 
 ## <strong>Assets</strong> 
 This epic consist out off different features which are connected to the assets management of the user. The user will be able to register their asset in USD. From their they can obtain other assets by doing transactions. Those assets will be visually presented by to the user as well the unrealized profits will be shown. Also a complete valuation will be shown to the user to make them able to monitor their assets closely with real-time information.  
@@ -237,7 +241,7 @@ The error page consist with a standard text. The user is able to navigate from t
 
 # Testing
 
-Please see the TESTING.md
+[visit TESTING.md](https://github.com/Dutchie1990/CryptoManager/blob/main/TESTING.md)
 
 # Deployment
 # Credits

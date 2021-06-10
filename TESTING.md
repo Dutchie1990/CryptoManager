@@ -42,6 +42,14 @@
 
 <img src="cryptomanager\app\static\img\testing\logout.gif">
 
+- As a logged in user, I want to be able change my password - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\adjust-password.gif">
+
+- As a logged in user, I want to be able to delete my account - <strong>Passed</strong>
+
+<img src="cryptomanager\app\static\img\testing\delete-account.gif">
+
 #### Further testing
  - Frontend field validations - <strong>Passed</strong>
  - Backend field validations - <strong>Passed</strong>
