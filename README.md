@@ -15,7 +15,7 @@ REPO: Click [here](https://github.com/Dutchie1990/CryptoManager) to access the G
     - [Surface](#Surface)
 - [Database design](#Database-design)
 - [Features](#Features)
-- [Technologies & Tools](#Technologies-and-tools)
+- [Technologies & Tools](#Technologies-&-tools)
 - [Testing](#Testing)
 - [Deployment](#Deployment)
 - [Credits](#Credits)
@@ -94,7 +94,7 @@ The webapp consist out of the following views:
 ### Tablet design
 ### Mobile design
 
-# Structure
+# Surface
 
 To optimize the user's experience of the site, it is design is very simple and basic. Relaxing colors are used with maximum contrast. The next colors are used in this project. 
 
@@ -286,7 +286,7 @@ os.environ.setdefault("SECRET_KEY", [your value])
 
 ```
 
-6. You can run the app by typing ````python run.py```
+6. You can run the app by typing ```python run.py```
 
 # Credits
 
