@@ -39,7 +39,7 @@ class TransactionForm(FlaskForm):
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])
-    prize = FloatField(("Prize"), validators=[
+    prize = FloatField(("Price"), validators=[
                                         InputRequired("Input is required!"),
                                         DataRequired("Data is required!")
                                     ])

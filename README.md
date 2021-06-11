@@ -15,7 +15,7 @@ REPO: Click [here](https://github.com/Dutchie1990/CryptoManager) to access the G
     - [Surface](#Surface)
 - [Database design](#Database-design)
 - [Features](#Features)
-- [Technologies & Tools](#Technologies-&-tools)
+- [Technologies & Tools](#Technologies-&-Tools)
 - [Testing](#Testing)
 - [Deployment](#Deployment)
 - [Credits](#Credits)
@@ -312,6 +312,8 @@ Thanks to my tutors and my mentor Spencer for valueable tips and tricks and help
 NOTE: 
 
 Thanks for reading my ReadMe.md, I hope you will beat me in the leaderboard! 
+
+<hr>
 -- Succes with your investments. -- 
 
 
