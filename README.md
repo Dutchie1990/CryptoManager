@@ -92,7 +92,7 @@ The webapp consist out of the following views:
 - Add transaction view 
 - General error view
 
-Click [here]() for the designs
+Click [here](https://github.com/Dutchie1990/CryptoManager/blob/Documentation-and-testing/cryptomanager/app/static/img/testing/wireframes.pdf) for the designs
 
 # Surface
 
