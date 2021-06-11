@@ -6,22 +6,22 @@ LIVE: Click [here](https://crypto-investment-monitor.herokuapp.com/) to access t
 REPO: Click [here](https://github.com/Dutchie1990/CryptoManager) to access the Github repository.
 
 # Table of Contents
-- Project Goal
-- The Five Planes of UX design
-    - Strategy
-    - Scope 
-    - Structure 
-    - Skeleton
-    - Surface 
-- Database design
-- Features
-- Technologies & Tools
-- Testing
-- Deployment
-- Credits
-    - Content
-    - Acknowledgments
-    - Used websites 
+- [Project Goal](#Project-goal)
+- [The Five Planes of UX design](#The-Five-Planes-Of-UX-Design)
+    - [Strategy](#Strategy)
+    - [Scope](#Scope)
+    - [Structure](#Structure)
+    - [Skeleton](#Skeleton)
+    - [Surface](#Surface)
+- [Database design](#Database-design)
+- [Features](#Features)
+- [Technologies & Tools](#Technologies-and-tools)
+- [Testing](#Testing)
+- [Deployment](#Deployment)
+- [Credits](#Credits)
+    - [Content](#Content)
+    - [Acknowledgments](#Acknowledgments)
+    - [Used websites](#Used-websites)
 
 # Project Goal
 Monitoring your assets is always the best thing to do as a cryptocurrency investor. For this reason, this project aims to provide a comprehensive overview of the assets which the users' holds as well the transactions made by the user. Besides managing your own assets, it will also consist a leaderboard whereby you can see the other users' profits and lost as well the portfolio overview. You can learn how other investors spread their investments. 
@@ -244,6 +244,50 @@ The error page consist with a standard text. The user is able to navigate from t
 [visit TESTING.md](https://github.com/Dutchie1990/CryptoManager/blob/main/TESTING.md)
 
 # Deployment
+
+### Heroku
+
+The project has been deployed and hosted on Heroku. To deploy the application, please follow the next steps: 
+
+1. Create a Procfile with the following command ```echo web: python run.py > Procfile```. Please do not forget to delete the blank line at the bottom of the file. 
+2. Create a requirement.txt with the following command ```pip freeze > requirements.txt```
+3. Push both files to github by using git -A --> git commit -m "files for deployement" --> git push
+4. Make your account at Heroku website and create a new app.
+5. Within the app, navigate to the "Deploy" tab and, under "Deployment method" select github
+6. Connect with the github repository by clicking "Connect"
+7. Navigate to the "Settings" tab, and click "Reveal Config Vars". Enter the following values:
+    - "IP": "0.0.0.0"
+    - "PORT": "5050"
+    - "MONGODB_URI": The database URI
+    - "MONGO_DBNAME": The database name
+    - "SECRET_KEY": Your FLASK secret key
+8. Deploy the app in the "Deploy" tab under "Manual deploy", select the desired branch and click "Deploy Branch"
+9. Another option is to configure automatic deployment from the main branch of github.
+10. When deployement is finished successfully, a message will display "Your app was successfully deployed", then you can click View to launch it.
+
+### Local 
+
+For local running the application please follow the next steps:
+
+1. Open your IDE and paste the following command ```gh repo clone Dutchie1990/CryptoManager```
+2. Install the required modules with the following command ```pip install -r requirements.txt```
+3. In MONGODB, create a new database "crypto_portfolio" and make the following collections "User", "Assets" and "Transactions"
+4. Create a env.py file within the app folder and add the file to the .gitignore file
+5. Configure your env.py file
+
+```
+import os
+
+os.environ.setdefault("IP", [your value])
+os.environ.setdefault("PORT", [your value])
+os.environ.setdefault("MONGODB_URI", [your value])
+os.environ.setdefault("MONGO_DBNAME", [your value])
+os.environ.setdefault("SECRET_KEY", [your value])
+
+```
+
+6. You can run the app by typing ````python run.py```
+
 # Credits
 
 ### Content
