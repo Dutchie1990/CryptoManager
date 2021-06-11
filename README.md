@@ -1,27 +1,29 @@
 # The Crypto Investment Monitor
 
+<img src="cryptomanager\app\static\img\testing\homepage-picture.png">
+
 Access to the project: 
 
 LIVE: Click [here](https://crypto-investment-monitor.herokuapp.com/) to access the live website. <br>
 REPO: Click [here](https://github.com/Dutchie1990/CryptoManager) to access the Github repository.
 
 # Table of Contents
-- Project Goal
-- The Five Planes of UX design
-    - Strategy
-    - Scope 
-    - Structure 
-    - Skeleton
-    - Surface 
-- Database design
-- Features
-- Technologies & Tools
-- Testing
-- Deployment
-- Credits
-    - Content
-    - Acknowledgments
-    - Used websites 
+- [Project Goal](#Project-goal)
+- [The Five Planes of UX design](#The-Five-Planes-Of-UX-Design)
+    - [Strategy](#Strategy)
+    - [Scope](#Scope)
+    - [Structure](#Structure)
+    - [Skeleton](#Skeleton)
+    - [Surface](#Surface)
+- [Database design](#Database-design)
+- [Features](#Features)
+- [Technologies & Tools](#Technologies-&-Tools)
+- [Testing](#Testing)
+- [Deployment](#Deployment)
+- [Credits](#Credits)
+    - [Content](#Content)
+    - [Acknowledgments](#Acknowledgments)
+    - [Used websites](#Used-websites)
 
 # Project Goal
 Monitoring your assets is always the best thing to do as a cryptocurrency investor. For this reason, this project aims to provide a comprehensive overview of the assets which the users' holds as well the transactions made by the user. Besides managing your own assets, it will also consist a leaderboard whereby you can see the other users' profits and lost as well the portfolio overview. You can learn how other investors spread their investments. 
@@ -90,11 +92,9 @@ The webapp consist out of the following views:
 - Add transaction view 
 - General error view
 
-### Desktop design
-### Tablet design
-### Mobile design
+Click [here](https://github.com/Dutchie1990/CryptoManager/blob/Documentation-and-testing/cryptomanager/app/static/img/testing/wireframes.pdf) for the designs
 
-# Structure
+# Surface
 
 To optimize the user's experience of the site, it is design is very simple and basic. Relaxing colors are used with maximum contrast. The next colors are used in this project. 
 
@@ -138,11 +138,15 @@ As a user is logged in the logout navigation link should be visible for the user
 
 - Register 
 
-If a user decide to make profile, he should fill in the register form, where he should register his firstname, emailaddress and password. To extra check the password, the user should repeat his newly chosen password. There are several frontend field validation such as firstname should be longer then 3 characters, email should include '@' and should be longer then 5 characters, password field should be longer the 5 characters and the confirm password field should be the same as the password field. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. In the backend there is also a validation if the emailaddress already exists, when the emailaddress is already in use the user is not able to make a new profile with the same emailaddress. When the user is succesfully registered, the user is automatically logged in and can work with his profile
+If a user decide to make profile, he should fill in the register form, where he should register his firstname, emailaddress and password. To extra check the password, the user should repeat his newly chosen password. There are several frontend field validation such as firstname should be longer then 3 characters, email should include '@' and should be longer then 5 characters, password field should be longer the 5 characters and the confirm password field should be the same as the password field. Those validations should be validated real-time. When all validations are met, the submit button should be available for the user. Lastly, when a user typed some input in the field the clear button should clear all input. In the backend there is also a validation if the emailaddress already exists, when the emailaddress is already in use the user is not able to make a new profile with the same emailaddress. When the user is succesfully registered, the user is automatically logged in and can work with his profile.
 
 - Delete 
 
-Due to limited time this feature is not implemented. 
+This feature is implemented because I wanted the user to make a full CRUD action from the frontend. When the user delete his account, all underlying assets and transactions are also deleted
+
+- Adjust password
+
+This feature is implemented because I wanted the user to make a full CRUD action from the frontend. When the user change his password, this password should be used to login again.
 
 ## <strong>Assets</strong> 
 This epic consist out off different features which are connected to the assets management of the user. The user will be able to register their asset in USD. From their they can obtain other assets by doing transactions. Those assets will be visually presented by to the user as well the unrealized profits will be shown. Also a complete valuation will be shown to the user to make them able to monitor their assets closely with real-time information.  
@@ -237,9 +241,53 @@ The error page consist with a standard text. The user is able to navigate from t
 
 # Testing
 
-Please see the TESTING.md
+[visit TESTING.md](https://github.com/Dutchie1990/CryptoManager/blob/main/TESTING.md)
 
 # Deployment
+
+### Heroku
+
+The project has been deployed and hosted on Heroku. To deploy the application, please follow the next steps: 
+
+1. Create a Procfile with the following command ```echo web: python run.py > Procfile```. Please do not forget to delete the blank line at the bottom of the file. 
+2. Create a requirement.txt with the following command ```pip freeze > requirements.txt```
+3. Push both files to github by using git -A --> git commit -m "files for deployement" --> git push
+4. Make your account at Heroku website and create a new app.
+5. Within the app, navigate to the "Deploy" tab and, under "Deployment method" select github
+6. Connect with the github repository by clicking "Connect"
+7. Navigate to the "Settings" tab, and click "Reveal Config Vars". Enter the following values:
+    - "IP": "0.0.0.0"
+    - "PORT": "5050"
+    - "MONGODB_URI": The database URI
+    - "MONGO_DBNAME": The database name
+    - "SECRET_KEY": Your FLASK secret key
+8. Deploy the app in the "Deploy" tab under "Manual deploy", select the desired branch and click "Deploy Branch"
+9. Another option is to configure automatic deployment from the main branch of github.
+10. When deployement is finished successfully, a message will display "Your app was successfully deployed", then you can click View to launch it.
+
+### Local 
+
+For local running the application please follow the next steps:
+
+1. Open your IDE and paste the following command ```gh repo clone Dutchie1990/CryptoManager```
+2. Install the required modules with the following command ```pip install -r requirements.txt```
+3. In MONGODB, create a new database "crypto_portfolio" and make the following collections "User", "Assets" and "Transactions"
+4. Create a env.py file within the app folder and add the file to the .gitignore file
+5. Configure your env.py file
+
+```
+import os
+
+os.environ.setdefault("IP", [your value])
+os.environ.setdefault("PORT", [your value])
+os.environ.setdefault("MONGODB_URI", [your value])
+os.environ.setdefault("MONGO_DBNAME", [your value])
+os.environ.setdefault("SECRET_KEY", [your value])
+
+```
+
+6. You can run the app by typing ```python run.py```
+
 # Credits
 
 ### Content
@@ -264,6 +312,8 @@ Thanks to my tutors and my mentor Spencer for valueable tips and tricks and help
 NOTE: 
 
 Thanks for reading my ReadMe.md, I hope you will beat me in the leaderboard! 
+
+<hr>
 -- Succes with your investments. -- 
 
 

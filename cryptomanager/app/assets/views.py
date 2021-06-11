@@ -1,10 +1,16 @@
+# Import functionalities from FLASK
 from flask import Blueprint, render_template, flash, redirect, url_for, g
+# Import functionalities from FLASK Login
 from flask_login import login_required, current_user
+# Import forms
 from .forms import DepositForm
+# Import database models
 from ..models import Assets, User, Transactions
+# Import api
 from ...app import api
-import copy
+# Import json to handle json data
 import json
+# Import datetime to handle dates
 import datetime
 
 assets = Blueprint('assets', __name__, template_folder="templates")
@@ -70,6 +76,10 @@ def get_asset():
 @assets.route('/fetch_owned_assets', methods=["GET"])
 @login_required
 def fetch_owned_assets():
+    """
+    param: none:
+        Method to forward the owned assets to the frontend
+    """
     try:
         db_assets = Assets.objects.filter(userid=current_user.id)
         return db_assets.to_json()
@@ -80,4 +90,8 @@ def fetch_owned_assets():
 @assets.route('/fetch_supported_assets', methods=["GET"])
 @login_required
 def fetch__supported_assets():
+    """
+    param: none:
+        Method to forward the supported coins to the frontend
+    """
     return json.dumps(api.supported_coins)

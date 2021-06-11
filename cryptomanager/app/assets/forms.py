@@ -1,12 +1,27 @@
+# Imports from FLASK
 from flask import g, flash
 # Extension for implementing WTForms for managing web forms
 from flask_wtf import FlaskForm
+# Import fields from WTForms
 from wtforms.fields import FloatField, HiddenField
+# Import validators from WTForms
 from wtforms.validators import InputRequired, DataRequired, ValidationError
+# Import database model
 from ..models import Assets
 
 
 class DepositForm(FlaskForm):
+    """Class DepositForm
+
+    Attributes:
+        amount: The amount which the user want to deposit or withdrawal
+
+    Methods:
+        validate_amount:
+            param: amount field
+        Method to check whether the user have sufficient amount to withdrawal
+    """
+
     amount = FloatField(("Amount"),
                         validators=[
         InputRequired("Input is required!"),

@@ -70,13 +70,13 @@ function getPrize() {
         return;
     }
 
-    if (!ordertype){
+    if (!ordertype) {
         ordertype = getValueByXpath(xpath_ordertype);
     }
-    if (!coin_symbol){
+    if (!coin_symbol) {
         coin_symbol = getValueByXpath(xpath_coin_symbol);
     }
-    if (!vs_currency){
+    if (!vs_currency) {
         vs_currency = getValueByXpath(xpath_vs_currency);
     }
 
@@ -101,9 +101,10 @@ function getPrize() {
 }
 
 function getUsdPrize() {
-    //disable submit
+    // disable submit
     submit_button.setAttribute("disabled", true);
-		let currency_out;
+    let currency_out;
+    // if currency is usd there is no need to call the api
     if (vs_currency === "usd") {
         usd_prize_element.value = prize_element.value / volume_element.value;
         submit_button.removeAttribute("disabled");
@@ -113,7 +114,7 @@ function getUsdPrize() {
         } else {
             currency_out = supported_assets.filter(x => x.symbol == vs_currency);
         }
-
+        // get current price from api and convert to usd price
         let id_in = currency_out[0].id;
         instance.get('/simple/price', {
             params: {
@@ -128,16 +129,17 @@ function getUsdPrize() {
                 usd_prize_element.value = parseFloat(calcPrize(response.data[id_in]['usd'], prize_element.value, volume_element.value));
                 console.log(usd_prize_element.value + "adjusted buy");
             }
+            // reactivate the button
             submit_button.removeAttribute("disabled");
         });
     }
 }
 
-function getValueByXpath(Xpath){
+function getValueByXpath(Xpath) {
     let element = document.evaluate(Xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
     return element.singleNodeValue.title.toLowerCase();
 }
 
-function calcPrize(a, b, c){
-    return (a * b ) / c;
+function calcPrize(a, b, c) {
+    return (a * b) / c;
 }
