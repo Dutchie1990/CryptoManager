@@ -1,5 +1,7 @@
 # The Crypto Investment Monitor
 
+<img src="cryptomanager\app\static\img\testing\homepage-picture.png">
+
 Access to the project: 
 
 LIVE: Click [here](https://crypto-investment-monitor.herokuapp.com/) to access the live website. <br>
