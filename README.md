@@ -92,9 +92,7 @@ The webapp consist out of the following views:
 - Add transaction view 
 - General error view
 
-### Desktop design
-### Tablet design
-### Mobile design
+Click [here]() for the designs
 
 # Surface
 
